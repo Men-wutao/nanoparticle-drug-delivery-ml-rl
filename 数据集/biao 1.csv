@@ -1,0 +1,891 @@
+No,Type,MAT,TS,CT,TM,Shape,Size,Zeta Potential,DE_tumor
+1,Inorganic,Gold,Active,Cervix,Xenograft Heterotopic,Rod,NA,-18,1.971937133
+2,Inorganic,Gold,Passive,Colon,Allograft Heterotopic,Rod,NA,0,1.278030303
+3,Inorganic,Gold,Active,Brain,Xenograft Heterotopic,Spherical,1.6232493,-5,2.821588295
+4,Inorganic,Gold,Passive,Brain,Xenograft Heterotopic,Spherical,1.5831988,-5,3.186238491
+5,Inorganic,Gold,Active,Breast,Xenograft Heterotopic,Other,1.8350561,-9.3,0.733884298
+6,Inorganic,Gold,Active,Skin,Xenograft Orthotopic,Spherical,1.6946052,-0.64,24.93100559
+7,Inorganic,Gold,Active,Skin,Xenograft Orthotopic,Spherical,1.7781513,-11,23.53137528
+8,Inorganic,Gold,Active,Skin,Xenograft Orthotopic,Spherical,2.0017337,-9,20.88493965
+9,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,1.665581,-6.7,18.57177319
+10,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,1.807535,-15,14.14878998
+11,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,2.0178677,-10,11.15403219
+12,Inorganic,Gold,Active,Skin,Xenograft Orthotopic,Spherical,2.2445245,-5,8.085157857
+13,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,2.2201081,-6,4.927649187
+14,Inorganic,Gold,Passive,Brain,Xenograft Heterotopic,Spherical,0.7831887,NA,1.128149606
+15,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Spherical,NA,NA,0.070053437
+16,Inorganic,Gold,Passive,Cervix,Xenograft Heterotopic,Spherical,1.2329961,-9.8,1.120704624
+17,Inorganic,Gold,Passive,Cervix,Xenograft Heterotopic,Spherical,1.4913617,-10.5,0.530725131
+18,Inorganic,Gold,Active,Brain,Xenograft Heterotopic,Other,1.382017,-21.3,1.771246802
+19,Inorganic,Gold,Passive,Brain,Xenograft Heterotopic,Other,1.4116197,21.7,0.692127639
+20,Inorganic,Gold,Passive,Brain,Xenograft Heterotopic,Other,1.3180633,24.6,0.597630741
+21,Inorganic,Gold,Passive,Brain,Xenograft Heterotopic,Other,1.2600714,25.4,0.461101376
+22,Inorganic,Gold,Active,Other,Xenograft Heterotopic,Spherical,0.7853298,-5,1.836086027
+23,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Spherical,1.8438554,0,1.72760225
+24,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Other,2.0464952,0,0.609885
+25,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Plate,2.1156105,0,0.4669505
+26,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Rod,1.8864907,0,0.151100943
+27,Inorganic,Gold,Passive,Breast,Xenograft Orthotopic,Spherical,0.7403627,0,5.373284014
+28,Inorganic,Gold,Active,Skin,Xenograft Orthotopic,Spherical,1.4913617,NA,2.225809503
+29,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Other,1.8041394,10.2,2.445235148
+30,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Other,1.9822712,18.7,0.443621399
+31,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Spherical,1.8228216,-2.6,0.833287268
+32,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Spherical,1.7979596,-27.1,0.75946043
+33,Inorganic,Gold,Active,Prostate,Xenograft Heterotopic,Spherical,1.8555192,-2.9,0.7905585
+34,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Spherical,1.7795965,-10.6,0.032634146
+35,Inorganic,Gold,Passive,Other,Xenograft Heterotopic,Spherical,1.7993405,0,0.334760684
+36,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Rod,1.1760913,-10,0.80575596
+37,Inorganic,Gold,Active,Prostate,Xenograft Heterotopic,Rod,1.1760913,-44.1,0.245551463
+38,Inorganic,Gold,Passive,Ovary,Xenograft Orthotopic,Rod,1,1.1,5.850939604
+39,Inorganic,Gold,Passive,Ovary,Xenograft Orthotopic,Spherical,1.9489018,-27.1,0.833405277
+40,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,1.91698,0,0.923636202
+41,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,1.5976952,0,0.642330867
+42,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,1.7874605,0,0.700570783
+43,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,1.9973864,0,0.436621247
+44,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,1.350248,0,0.021964889
+45,Inorganic,Other IM,Passive,Breast,Allograft Heterotopic,Rod,1.6211763,-0.06,0.646170909
+46,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Spherical,0.8573325,-23.5,0.400379841
+47,Inorganic,Other IM,Passive,Breast,Allograft Heterotopic,Rod,1.6464037,-14.1,0.27785401
+48,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Rod,1.3053514,-20.2,0.210054871
+49,Inorganic,Gold,Active,Brain,Xenograft Heterotopic,Spherical,1.8555192,6.1,0.033247391
+50,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,0.69897,NA,2.98259121
+51,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,0.69897,NA,1.760584449
+52,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,0.69897,2.5,1.724148734
+53,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,1.3424227,NA,1.160112285
+54,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Spherical,1.3424227,NA,0.61648218
+55,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,1.0413927,NA,0.241253769
+56,Inorganic,Gold,Active,Skin,Allograft Orthotopic,Spherical,0.4313638,-18.4,2.000758444
+57,Inorganic,Gold,Active,Skin,Allograft Orthotopic,Spherical,0.4313638,-22.1,1.584897855
+58,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,0.4313638,-42.3,1.469114395
+59,Inorganic,Gold,Active,Skin,Allograft Orthotopic,Spherical,0.4313638,-25.6,1.302815861
+60,Inorganic,Gold,Active,Skin,Allograft Orthotopic,Spherical,0.4313638,-16.6,1.075543891
+61,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,0.4313638,-16.8,0.943071057
+62,Inorganic,Gold,Active,Skin,Allograft Orthotopic,Rod,1.7126497,3,2.434210526
+63,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Spherical,NA,-25.9,1.172267704
+64,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Other,NA,-9.2,7.295029513
+65,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Rod,NA,-11,4.292564144
+66,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,NA,NA,7.103407605
+67,Inorganic,Iron Oxide,Active,Skin,Xenograft Orthotopic,Spherical,1.3873898,-28.6,1.042909364
+68,Inorganic,Iron Oxide,Active,Breast,Xenograft Heterotopic,Spherical,NA,NA,0.699973272
+69,Inorganic,Iron Oxide,Active,Prostate,Xenograft Heterotopic,Spherical,2.1433271,-11.6,0.493357354
+70,Inorganic,Iron Oxide,Active,Brain,Xenograft Heterotopic,Spherical,1.8325089,NA,1.299170091
+71,Inorganic,Iron Oxide,Passive,Brain,Xenograft Heterotopic,Spherical,1.8325089,NA,0.590367072
+72,Inorganic,Iron Oxide,Passive,Breast,Allograft Heterotopic,Spherical,1.7058637,NA,0.999586931
+73,Hybrid,Hybrid,Active,Breast,Xenograft Heterotopic,Spherical,NA,NA,5.092474835
+74,Inorganic,Hybrid,Active,Other,Xenograft Heterotopic,Spherical,1.3483049,-4.6,9.339277869
+75,Inorganic,Hybrid,Active,Other,Xenograft Heterotopic,Spherical,1.4487063,-0.6,7.408124941
+76,Inorganic,Hybrid,Active,Other,Xenograft Heterotopic,Spherical,1.5954962,-4.5,5.252648663
+77,Inorganic,Hybrid,Active,Other,Xenograft Heterotopic,Spherical,1.605305,-3.3,4.969917857
+78,Inorganic,Hybrid,Active,Brain,Xenograft Heterotopic,Spherical,2.3544926,-3.5,1.270952756
+79,Inorganic,Hybrid,Passive,Brain,Xenograft Heterotopic,Spherical,2.3412366,-3.6,0.724239994
+80,Inorganic,Hybrid,Passive,Breast,Allograft Heterotopic,Spherical,1.770852,-7.4,0.331444804
+81,Inorganic,Hybrid,Passive,Brain,Xenograft Heterotopic,Spherical,2.0976043,-10.9,0.17895588
+82,Inorganic,Hybrid,Active,Brain,Xenograft Heterotopic,Spherical,2.1105897,-10.2,0.496706342
+83,Inorganic,Hybrid,Passive,Breast,Allograft Heterotopic,Spherical,2.2886963,-5.1,1.583646472
+84,Inorganic,Hybrid,Active,Breast,Allograft Heterotopic,Spherical,2.2886963,-5.1,0.63415425
+85,Inorganic,Hybrid,Passive,Breast,Allograft Heterotopic,Spherical,2.2437819,-3.25,0.413108128
+86,Inorganic,Hybrid,Active,Breast,Allograft Heterotopic,Spherical,2.2437819,-3.25,0.839997186
+87,Inorganic,Hybrid,Passive,Skin,Xenograft Orthotopic,Spherical,0.8325089,0,0.066280918
+88,Inorganic,Hybrid,Active,Skin,Xenograft Orthotopic,Spherical,0.845098,-3,0.158038317
+89,Inorganic,Other IM,Active,Breast,Allograft Heterotopic,Spherical,2.2253093,-2.7,0.944864685
+90,Inorganic,Other IM,Passive,Breast,Allograft Heterotopic,Spherical,2.1766699,-2.3,0.515756958
+91,Inorganic,Other IM,Active,Cervix,Xenograft Heterotopic,Spherical,1.7259116,-12.4,5.732735984
+92,Inorganic,Iron Oxide,Active,Brain,Xenograft Heterotopic,Spherical,1.50515,NA,4.12239868
+93,Inorganic,Iron Oxide,Passive,Pancreas,Xenograft Heterotopic,Other,2.2789821,-21.9,0.201561247
+94,Inorganic,Iron Oxide,Passive,Colon,Allograft Heterotopic,Spherical,1.90309,-0.5,0.372137637
+95,Inorganic,Iron Oxide,Active,Lung,Xenograft Heterotopic,Spherical,2,3,24.77953957
+96,Hybrid,Hybrid,Passive,Breast,Allograft Heterotopic,Other,2.1760913,-19,1.690254406
+97,Inorganic,Other IM,Active,Cervix,Xenograft Heterotopic,Rod,NA,-14.6,0.216752237
+98,Inorganic,Other IM,Passive,Sarcoma,Allograft Orthotopic,Spherical,NA,-9.8,0.742915348
+99,Inorganic,Other IM,Passive,Sarcoma,Allograft Orthotopic,Spherical,NA,-12.7,0.581607199
+100,Inorganic,Other IM,Passive,Cervix,Xenograft Heterotopic,Spherical,2.6417715,-14.4,1.973862808
+101,Inorganic,Other IM,Passive,Colon,Allograft Heterotopic,Spherical,1.90309,-0.5,0.891304348
+102,Inorganic,Silica,Passive,Breast,Allograft Orthotopic,Spherical,2.4070508,-27.6,0.222735215
+103,Hybrid,Hybrid,Passive,Liver,Xenograft Heterotopic,Spherical,2.3222193,27,0.879423655
+104,Hybrid,Hybrid,Passive,Skin,Allograft Orthotopic,Spherical,2.3856063,-11.7,6.103032178
+105,Inorganic,Silica,Passive,Breast,Allograft Orthotopic,Spherical,2.0322157,-14,2.036128551
+106,Hybrid,Hybrid,Passive,Breast,Allograft Orthotopic,Rod,2.3222193,24.1,6.345282186
+107,Hybrid,Hybrid,Active,Breast,Allograft Orthotopic,Rod,2.3222193,24.1,16.62617028
+108,Hybrid,Hybrid,Passive,Colon,Allograft Heterotopic,Spherical,1.6919651,0,0.36240066
+109,Inorganic,Other IM,Active,Breast,Xenograft Heterotopic,Spherical,2.3117539,-25.5,0.037053885
+110,Inorganic,Silica,Passive,Colon,Allograft Heterotopic,Spherical,NA,NA,0.266664467
+111,Inorganic,Silica,Active,Cervix,Xenograft Heterotopic,Spherical,2.3222193,-31.6,2.602879878
+112,Inorganic,Silica,Passive,Sarcoma,Allograft Orthotopic,Spherical,2.3475252,-17.9,20.34484486
+113,Organic,Polymeric,Passive,Lung,Allograft Heterotopic,Spherical,1.5646661,-8.5,1.259159941
+114,Organic,Polymeric,Active,Breast,Allograft Heterotopic,Spherical,1.5682017,NA,0.903915515
+115,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,1.5682017,NA,0.501095569
+116,Organic,Polymeric,Passive,Skin,Xenograft Orthotopic,Spherical,1.8573325,-0.5,0.858989844
+117,Organic,Polymeric,Passive,Skin,Xenograft Orthotopic,Spherical,1.8573325,-0.5,0.965362062
+118,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,1.3475252,-1.48,0.124137877
+119,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,1.3475252,-1.48,0.214770322
+120,Organic,Polymeric,Passive,Skin,Xenograft Orthotopic,Other,1.94939,-7,0.022695555
+121,Organic,Polymeric,Active,Skin,Xenograft Orthotopic,Other,1.9444827,-24.16,0.058315919
+122,Organic,Polymeric,Passive,Ovary,Xenograft Heterotopic,Rod,2.3560259,-3.2,0.298469642
+123,Organic,Polymeric,Passive,Ovary,Xenograft Heterotopic,Other,2.4199557,-3.4,0.219741884
+124,Organic,Polymeric,Passive,Lung,Xenograft Heterotopic,Rod,2.3344538,-3.11,0.074885964
+125,Organic,Polymeric,Passive,Lung,Xenograft Heterotopic,Rod,2.3344538,-3.36,0.081348129
+126,Organic,Polymeric,Active,Breast,Xenograft Heterotopic,Spherical,2.437909,-12.13,1.258489168
+127,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.3356585,-14.34,0.409465854
+128,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.4771213,-2.29,0.800205628
+129,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.7323938,-1.61,0.818333333
+130,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.8388491,-0.89,0.90724026
+131,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,2.0413927,0.15,0.695010823
+132,Organic,Polymeric,Passive,Pancreas,Xenograft Heterotopic,Spherical,1.4771213,-2.29,0.984691358
+133,Organic,Polymeric,Passive,Pancreas,Xenograft Heterotopic,Spherical,1.7323938,-1.61,0.626975309
+134,Organic,Polymeric,Passive,Pancreas,Xenograft Heterotopic,Spherical,1.8388491,-0.89,0.387901235
+135,Organic,Polymeric,Passive,Pancreas,Xenograft Heterotopic,Spherical,2.0413927,0.15,0.388580247
+136,Organic,Polymeric,Active,Breast,Allograft Heterotopic,Spherical,1.8506462,4,0.608229424
+137,Organic,Polymeric,Active,Breast,Allograft Heterotopic,Spherical,1.9375179,2,0.473145168
+138,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,1.80618,3,0.356082215
+139,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.9489018,-0.96,0.32609653
+140,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.9400182,-0.47,0.206892888
+141,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,1.8076027,-0.39,0.665892167
+142,Organic,Polymeric,Active,Cervix,Xenograft Heterotopic,Spherical,1.8347385,-1.07,0.588138
+143,Organic,Polymeric,Active,Cervix,Xenograft Heterotopic,Spherical,1.8402316,-1.98,0.724509808
+144,Organic,Polymeric,Active,Cervix,Xenograft Heterotopic,Spherical,1.8603979,-2.33,0.673964214
+145,Organic,Polymeric,Active,Cervix,Xenograft Heterotopic,Spherical,1.8891336,-6.95,0.782268264
+146,Organic,Polymeric,Active,Cervix,Xenograft Heterotopic,Spherical,1.9604232,-9.25,0.742257889
+147,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.60206,-2,1.50482611
+148,Organic,Polymeric,Active,Breast,Allograft Orthotopic,Spherical,1.3521825,0,4.472235832
+149,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.8129134,-2,1.140031462
+150,Organic,Polymeric,Passive,Sarcoma,Allograft Heterotopic,Spherical,2.3455698,NA,1.95850275
+151,Organic,Polymeric,Active,Cervix,Xenograft Heterotopic,Spherical,1.30103,NA,0.302928103
+152,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,1.30103,NA,0.227806503
+153,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,2.1254813,-15.75,0.920213473
+154,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.1737688,-13.2,10.50065484
+155,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.1967287,-23.2,8.813880565
+156,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.1931246,-38.4,7.599330132
+157,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.6594408,-25.1,3.288486003
+158,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.1763807,14.8,1.820631338
+159,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.177825,25.5,2.504101307
+160,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.183839,34.6,3.532153005
+161,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.4781334,24.4,1.637974848
+162,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.60206,-4,0.916523535
+163,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,2.6009729,38.1,3.920837696
+164,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,2.4409091,16.4,4.728158192
+165,Organic,Other OM,Active,Breast,Allograft Heterotopic,Plate,1.5682017,-2,0.984127913
+166,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Plate,1.4183013,-16.4,0.45668341
+167,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Plate,1.3404441,-9.46,0.88929794
+168,Organic,Other OM,Active,Breast,Allograft Heterotopic,Plate,1.4313638,-0.08,0.461473206
+169,Organic,Other OM,Passive,Skin,Allograft Orthotopic,Plate,1.9542425,-30,9.113012279
+170,Organic,Other OM,Passive,Brain,Xenograft Heterotopic,Plate,1.4424798,-9.46,0.213513102
+171,Organic,Other OM,Active,Brain,Xenograft Heterotopic,Plate,1.5171959,-5,0.364037675
+172,Organic,Other OM,Active,Breast,Allograft Heterotopic,Plate,1.4313638,-0.08,1.038429073
+173,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Plate,1.3404441,-9.46,0.675755112
+174,Organic,Other OM,Passive,Brain,Xenograft Heterotopic,Rod,2.30103,NA,0.777683925
+175,Organic,Other OM,Active,Brain,Xenograft Heterotopic,Rod,2.30103,NA,1.250126008
+176,Organic,Other OM,Passive,Brain,Xenograft Heterotopic,Rod,2.30103,NA,1.125882057
+177,Organic,Other OM,Active,Brain,Xenograft Heterotopic,Rod,2.30103,NA,3.563634073
+178,Organic,Liposome,Passive,Cervix,Xenograft Orthotopic,Spherical,1.984077,-59.4,1.597340895
+179,Organic,Liposome,Passive,Breast,Allograft Orthotopic,Spherical,1.8981765,-36.1,0.15026687
+180,Organic,Liposome,Passive,Breast,Allograft Orthotopic,Spherical,1.8981765,-36.1,0.42597443
+181,Organic,Liposome,Active,Breast,Allograft Heterotopic,Spherical,2.5865873,20,1.712545126
+182,Organic,Liposome,Passive,Breast,Allograft Orthotopic,Spherical,2.0791812,0,0.973709755
+183,Organic,Liposome,Passive,Other,Xenograft Heterotopic,Spherical,1.39794,-3,0.097465105
+184,Organic,Liposome,Passive,Other,Xenograft Heterotopic,Spherical,1.7075702,-4,0.055087232
+185,Organic,Liposome,Passive,Other,Xenograft Heterotopic,Spherical,1.9684829,-6,0.065460323
+186,Organic,Liposome,Active,Colon,Allograft Heterotopic,Spherical,2.3521825,NA,0.836208488
+187,Organic,Liposome,Passive,Colon,Allograft Heterotopic,Spherical,2.2253093,NA,0.492367118
+188,Organic,Liposome,Passive,Colon,Allograft Heterotopic,Spherical,2.071882,0,0.537820866
+189,Organic,Liposome,Passive,Other,Xenograft Heterotopic,Spherical,2.30103,-2,0.650502382
+190,Organic,Liposome,Passive,Skin,Xenograft Orthotopic,Spherical,2,0,0.942684272
+191,Organic,Hydrogel,Active,Breast,Allograft Heterotopic,Spherical,2.3027637,-14,0.044214101
+192,Organic,Hydrogel,Active,Breast,Allograft Heterotopic,Spherical,2.3372595,-13.5,0.047356121
+193,Organic,Hydrogel,Active,Breast,Allograft Heterotopic,Spherical,2.3537239,-13.1,0.089625782
+194,Organic,Hydrogel,Active,Breast,Allograft Heterotopic,Spherical,2.3832766,-10.8,0.066771981
+195,Organic,Hydrogel,Active,Liver,Allograft Heterotopic,Spherical,1.69897,-45,0.118741257
+196,Organic,Hydrogel,Passive,Liver,Allograft Heterotopic,Spherical,1.9420081,-30,0.439432224
+197,Organic,Hydrogel,Passive,Liver,Allograft Heterotopic,Spherical,2.1643529,9,0.215882622
+198,Organic,Hydrogel,Active,Liver,Allograft Heterotopic,Spherical,2.1414498,9,0.246982194
+199,Organic,Hydrogel,Active,Lung,Xenograft Heterotopic,Spherical,2.30103,-14.6,0.385996979
+200,Organic,Hydrogel,Passive,Pancreas,Xenograft Heterotopic,Spherical,2.1225435,-24.6,0.831802824
+201,Organic,Hydrogel,Passive,Pancreas,Xenograft Heterotopic,Spherical,2.252853,-22.3,1.388369116
+202,Organic,Hydrogel,Active,Pancreas,Xenograft Heterotopic,Spherical,2.3632358,-18.1,2.383267311
+203,Organic,Hydrogel,Passive,Liver,Allograft Heterotopic,Spherical,2.1205739,-34.2,0.681389978
+204,Organic,Hydrogel,Passive,Liver,Allograft Heterotopic,Spherical,2.2855573,-25.7,0.1741093
+205,Organic,Dendrimer,Passive,Ovary,Xenograft Orthotopic,Spherical,0.90309,-1.3,9.852797136
+206,Organic,Polymeric,Passive,Ovary,Xenograft Orthotopic,Spherical,0.8195439,-1.46,0.44678414
+207,Organic,Polymeric,Passive,Ovary,Xenograft Orthotopic,Spherical,0.7781512,2.28,1.013824031
+208,Organic,Dendrimer,Passive,Colon,Allograft Heterotopic,Spherical,0.7671559,19.77,0.263319264
+209,Organic,Dendrimer,Passive,Colon,Allograft Heterotopic,Spherical,1.2284004,-6.51,1.369058819
+210,Organic,Dendrimer,Passive,Cervix,Xenograft Heterotopic,Spherical,0.69897,NA,2.424755422
+211,Organic,Dendrimer,Active,Cervix,Xenograft Heterotopic,Spherical,0.69897,NA,7.95358188
+212,Organic,Other OM,Passive,Brain,Xenograft Heterotopic,Rod,1.9777236,-36,0.039922821
+213,Organic,Polymeric,Passive,Ovary,Xenograft Orthotopic,Spherical,1.2148438,-19.2,3.097058449
+214,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Rod,2.2121876,-4.34,3.445582179
+215,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Rod,2.3443923,-4.34,2.771517522
+216,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Rod,2.510545,-4.34,2.369585205
+217,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Rod,2.6042261,-4.34,2.064349949
+218,Organic,Other OM,Passive,Lung,Xenograft Heterotopic,Spherical,1.9334873,71.3,0.142940404
+219,Organic,Other OM,Passive,Lung,Xenograft Heterotopic,Spherical,2.1293676,0.6,0.360768628
+220,Organic,Other OM,Active,Lung,Xenograft Heterotopic,Spherical,2.225826,-0.8,0.379478994
+221,Organic,Other OM,Passive,Other,Allograft Heterotopic,Spherical,2.587711,-46.6,0.2254824
+222,Organic,Polymeric,Passive,Brain,Xenograft Orthotopic,Spherical,2.2166936,-30.5,0.436821267
+223,Organic,Polymeric,Active,Brain,Xenograft Orthotopic,Spherical,2.2437819,-27.2,0.615158371
+224,Organic,Polymeric,Passive,Brain,Xenograft Orthotopic,Spherical,2.2347703,-32.8,0.534683544
+225,Organic,Polymeric,Active,Brain,Xenograft Orthotopic,Spherical,2.2716093,-29.5,0.893987342
+226,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,2.1271048,NA,0.029193978
+227,Organic,Other OM,Active,Skin,Allograft Orthotopic,Spherical,2.1992065,-18.1,1.098943802
+228,Organic,Other OM,Active,Skin,Allograft Orthotopic,Spherical,2.1690864,-20.5,1.926824631
+229,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,2.2405492,-22.9,0.023259685
+230,Organic,Polymeric,Passive,Breast,Xenograft Orthotopic,Spherical,1.9912261,-3.4,0.133624551
+231,Organic,Polymeric,Passive,Breast,Xenograft Orthotopic,Spherical,1.9731279,-3.4,0.809673565
+232,Organic,Polymeric,Passive,Breast,Xenograft Orthotopic,Spherical,2.0170333,-3.4,1.320202171
+233,Organic,Polymeric,Passive,Breast,Xenograft Orthotopic,Spherical,1.9822712,-3.4,2.670500197
+234,Organic,Polymeric,Passive,Breast,Xenograft Orthotopic,Spherical,2.0128372,-3.4,6.659747565
+235,Organic,Polymeric,Active,Lung,Allograft Heterotopic,Spherical,2.2692794,-24.7,0.137728267
+236,Organic,Polymeric,Passive,Lung,Allograft Heterotopic,Spherical,2.2469907,-23.1,0.073336381
+237,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,2.0334238,-2.3,1.499440777
+238,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.6981005,0.09,0.362032315
+239,Organic,Polymeric,Passive,Breast,Allograft Orthotopic,Spherical,NA,-19.7,0.934087404
+240,Organic,Polymeric,Active,Breast,Allograft Orthotopic,Spherical,NA,-16.8,1.427249357
+241,Organic,Liposome,Passive,Sarcoma,Allograft Orthotopic,Spherical,2.1978317,-17.4,0.013050331
+242,Organic,Polymeric,Passive,Breast,Allograft Orthotopic,Spherical,NA,NA,0.436648319
+243,Organic,Other OM,Passive,Breast,Xenograft Heterotopic,Rod,2.3624825,NA,6.415784381
+244,Organic,Other OM,Passive,Breast,Xenograft Heterotopic,Rod,2.3619166,-10,6.561646175
+245,Organic,Other OM,Passive,Breast,Xenograft Heterotopic,Rod,2.382017,0,5.879771934
+246,Organic,Other OM,Active,Breast,Xenograft Heterotopic,Rod,2.3843534,3.8,13.92470211
+247,Organic,Other OM,Active,Breast,Xenograft Heterotopic,Rod,2.3807538,-10,14.10258235
+248,Organic,Other OM,Active,Colon,Xenograft Heterotopic,Spherical,2.3147097,-20,0.697088242
+249,Organic,Dendrimer,Active,Breast,Xenograft Heterotopic,Spherical,0.8864907,NA,6.288722952
+250,Organic,Dendrimer,Active,Breast,Xenograft Heterotopic,Spherical,0.8864907,NA,8.18551007
+251,Organic,Dendrimer,Active,Breast,Xenograft Heterotopic,Spherical,0.8864907,NA,10.42248754
+252,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.6946052,-1.3,0.814605437
+253,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.0606978,-20,0.018097096
+254,Organic,Liposome,Passive,Colon,Allograft Heterotopic,Spherical,2.0166155,-15,0.194607672
+255,Organic,Liposome,Passive,Colon,Allograft Heterotopic,Spherical,2.0107239,-39.5,0.181860048
+256,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,1.544068,-4,0.284408805
+257,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,2,-4,0.810970948
+258,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,2.0413927,-4,1.003125
+259,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,2,-4,1.006782946
+260,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,2.1760913,-4,0.982798165
+261,Organic,Polymeric,Passive,Cervix,Allograft Heterotopic,Spherical,2.0326188,NA,0.297984513
+262,Hybrid,Hybrid,Passive,Colon,Xenograft Heterotopic,Other,1.39794,NA,1.334728627
+263,Organic,Other OM,Passive,Liver,Allograft Heterotopic,Spherical,2.0606978,-31.8,0.078822036
+264,Organic,Polymeric,Passive,Breast,Allograft Orthotopic,Spherical,2.0542299,10,1.326315789
+265,Organic,Other OM,Active,Breast,Allograft Orthotopic,Spherical,NA,21.7,0.027843044
+266,Organic,Dendrimer,Passive,Sarcoma,Allograft Orthotopic,Spherical,0.8260748,16.3,4.570396004
+267,Organic,Dendrimer,Active,Sarcoma,Allograft Orthotopic,Spherical,1.839478,36.7,16.2334818
+268,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Spherical,2.2552725,34.4,0.247518061
+269,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.1818436,-10.3,0.120491901
+270,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.1958997,-8.8,0.22400043
+271,Organic,Polymeric,Passive,Sarcoma,Allograft Orthotopic,Spherical,2.1303338,NA,0.071483525
+272,Organic,Polymeric,Passive,Sarcoma,Allograft Orthotopic,Spherical,2.1892095,NA,0.120321012
+273,Organic,Liposome,Passive,Breast,Allograft Heterotopic,Spherical,1.94939,-40,0.094811321
+274,Organic,Liposome,Passive,Breast,Allograft Heterotopic,Spherical,2.1398791,-14,0.128685141
+275,Organic,Liposome,Passive,Breast,Allograft Heterotopic,Spherical,2.10721,5,0.14035967
+276,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,1.3096302,3.91,0.009783013
+277,Organic,Polymeric,Passive,Liver,Xenograft Heterotopic,Spherical,2.0413927,-5.1,0.149559859
+278,Organic,Polymeric,Active,Liver,Xenograft Heterotopic,Spherical,2.0464952,-6.2,0.211600156
+279,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,2.0224284,-4.8,0.444985299
+280,Organic,Polymeric,Passive,Liver,Xenograft Heterotopic,Spherical,2.155336,0,0.311793985
+281,Organic,Polymeric,Passive,Liver,Xenograft Heterotopic,Spherical,2.161368,0,0.311915318
+282,Organic,Polymeric,Active,Liver,Xenograft Heterotopic,Spherical,2.1702617,0,0.427035169
+283,Organic,Other OM,Active,Liver,Xenograft Heterotopic,Spherical,2.0021661,-23.1,0.035738943
+284,Organic,Other OM,Active,Liver,Xenograft Heterotopic,Spherical,2.0021661,-23.1,0.042828094
+285,Organic,Dendrimer,Passive,Colon,Allograft Heterotopic,Spherical,2.3560259,30.3,6.873319527
+286,Organic,Dendrimer,Active,Colon,Allograft Heterotopic,Spherical,2.1702617,18.4,31.15166814
+287,Organic,Polymeric,Passive,Lung,Xenograft Heterotopic,Spherical,2.0285713,35.6,0.142022595
+288,Organic,Polymeric,Active,Lung,Xenograft Heterotopic,Spherical,2.3565994,28.3,0.18297664
+289,Organic,Polymeric,Passive,Lung,Xenograft Heterotopic,Spherical,2.0285713,35.6,0.150660745
+290,Organic,Polymeric,Active,Lung,Xenograft Heterotopic,Spherical,2.3565994,28.3,0.288901289
+291,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,1.9849771,0,0.502597284
+292,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.0986437,-7.4,0.194102564
+293,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.1152776,-2.3,0.315192308
+294,Organic,Other OM,Active,Prostate,Xenograft Heterotopic,Spherical,NA,NA,0.243050872
+295,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.2615008,-22.6,5.362762999
+296,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.1818436,0,0.673007246
+297,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.2121876,0,0.562736742
+298,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.1818436,0,1.136174842
+299,Organic,Liposome,Passive,Prostate,Xenograft Heterotopic,Spherical,1.9684829,-32.2,0.149013994
+300,Organic,Liposome,Active,Prostate,Xenograft Heterotopic,Spherical,2.0086002,-12.2,0.390763733
+301,Organic,Other OM,Active,Liver,Allograft Heterotopic,Spherical,2.2557548,-20.3,0.07756503
+302,Organic,Other OM,Active,Liver,Allograft Heterotopic,Spherical,2.1156105,-8.2,0.094515117
+303,Organic,Other OM,Passive,Liver,Allograft Heterotopic,Spherical,1.7355989,-22.3,1.135149081
+304,Organic,Liposome,Active,Cervix,Xenograft Heterotopic,Spherical,1.0934217,27.2,3.733625271
+305,Organic,Other OM,Active,Sarcoma,Allograft Orthotopic,Spherical,2.1293676,-35.1,2.706430799
+306,Organic,Other OM,Active,Sarcoma,Allograft Orthotopic,Spherical,2.1528996,-31,3.988853556
+307,Hybrid,Hybrid,Passive,Liver,Allograft Heterotopic,Spherical,2.0881361,-30.1,0.038357173
+308,Hybrid,Hybrid,Active,Liver,Allograft Heterotopic,Spherical,2.3396502,-30.1,0.053030204
+309,Organic,Polymeric,Passive,Other,Allograft Heterotopic,Spherical,0.9344985,NA,0.55823644
+310,Organic,Polymeric,Passive,Other,Allograft Heterotopic,Spherical,1.40824,NA,1.783373756
+311,Organic,Polymeric,Active,Breast,Xenograft Heterotopic,Spherical,NA,-22.1,0.166308594
+312,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.155336,NA,0.207802858
+313,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.1731863,NA,0.296563624
+314,Organic,Other OM,Active,Lung,Xenograft Heterotopic,Spherical,2.2070955,-31.1,0.093270199
+315,Organic,Polymeric,Passive,Skin,Allograft Orthotopic,Spherical,2.2203696,-36.7,0.150057208
+316,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Spherical,2.1254813,-27.1,0.047110238
+317,Organic,Other OM,Passive,Sarcoma,Allograft Orthotopic,Plate,NA,-6,0.128441511
+318,Organic,Other OM,Active,Sarcoma,Allograft Orthotopic,Plate,NA,-5.96,0.169412162
+319,Organic,Polymeric,Passive,Colon,Xenograft Heterotopic,Spherical,1.8825245,-13,0.208698659
+320,Organic,Polymeric,Passive,Skin,Allograft Orthotopic,Spherical,2.1760913,0,0.377306208
+321,Organic,Polymeric,Active,Skin,Allograft Orthotopic,Spherical,2.1846914,0,0.691478315
+322,Organic,Polymeric,Passive,Breast,Allograft Orthotopic,Spherical,2.1643529,-22.7,0.164754351
+323,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.2211533,12.3,0.159676486
+324,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.2432861,8.7,0.228940676
+325,Organic,Other OM,Passive,Liver,Allograft Heterotopic,Spherical,2.3111178,-26.9,0.334697939
+326,Organic,Other OM,Active,Liver,Allograft Heterotopic,Spherical,2.3430145,-38,0.434049163
+327,Organic,Other OM,Passive,Liver,Allograft Heterotopic,Spherical,2.2702129,-19,0.008095257
+328,Hybrid,Hybrid,Passive,Breast,Xenograft Heterotopic,Plate,1.7497363,0,0.375366071
+329,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,1.307496,-2,0.747635691
+330,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.2953471,-20.4,2.624417537
+331,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.4421661,-23.5,2.292847482
+332,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.544068,-27.2,0.940774979
+333,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.4121244,-23.7,2.596322335
+334,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.1947918,-23.7,4.010675616
+335,Organic,Other OM,Active,Breast,Xenograft Heterotopic,Spherical,1.9479236,-15.6,0.956134637
+336,Organic,Liposome,Passive,Other,Xenograft Heterotopic,Spherical,2.0633334,-36.4,0.243440955
+337,Organic,Polymeric,Passive,Lung,Xenograft Heterotopic,Spherical,2.2182729,25.1,10.05163862
+338,Organic,Polymeric,Active,Lung,Xenograft Heterotopic,Spherical,2.2655253,21.1,23.41807257
+339,Organic,Liposome,Passive,Other,Xenograft Heterotopic,Spherical,2.0515384,-39.7,5.975741381
+340,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,2.0884905,-15,1.413391162
+341,Organic,Liposome,Passive,Ovary,Xenograft Heterotopic,Spherical,1.7581546,34.5,0.183928067
+342,Organic,Liposome,Active,Ovary,Xenograft Heterotopic,Spherical,1.9047155,-36.9,0.280675286
+343,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.0305997,23.3,0.818208011
+344,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.2787536,26.1,0.645098244
+345,Organic,Other OM,Passive,Liver,Allograft Heterotopic,Rod,2.2268576,24.2,0.80215076
+346,Organic,Polymeric,Passive,Liver,Xenograft Heterotopic,Spherical,1.2695129,-1.8,1.011689638
+347,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.1367206,-15.6,0.313794197
+348,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.1105897,-9.1,0.241947975
+349,Organic,Polymeric,Active,Breast,Xenograft Orthotopic,Spherical,2.0827854,-2.4,0.155982007
+350,Organic,Other OM,Passive,Lung,Xenograft Heterotopic,Spherical,1.7323938,0,0.205087532
+351,Organic,Liposome,Passive,Breast,Xenograft Heterotopic,Spherical,2.0538464,-53.2,0.103711321
+352,Organic,Liposome,Passive,Breast,Xenograft Heterotopic,Spherical,2.3552599,-52.4,0.067048802
+353,Organic,Liposome,Passive,Breast,Xenograft Heterotopic,Spherical,2.5833122,-53.9,0.045216714
+354,Organic,Polymeric,Passive,Prostate,Xenograft Heterotopic,Spherical,1.9822712,0,2.841724757
+355,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,1.30103,5,1.671759148
+356,Organic,Polymeric,Active,Cervix,Xenograft Heterotopic,Spherical,1.30103,5,3.206550797
+357,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,2.0791812,-18,0.137614719
+358,Organic,Polymeric,Passive,Sarcoma,Allograft Orthotopic,Spherical,2.4504031,-9.7,0.150824651
+359,Organic,Hydrogel,Active,Liver,Allograft Heterotopic,Spherical,1.8981765,-40,0.429154374
+360,Organic,Hydrogel,Active,Liver,Allograft Heterotopic,Spherical,1.8215135,-40,0.193171633
+361,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,2.2132521,-19.6,8.449314024
+362,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,2.0737184,-13.7,6.814374034
+363,Organic,Hydrogel,Passive,Liver,Allograft Heterotopic,Spherical,2.2068259,-30.9,0.31053961
+364,Organic,Dendrimer,Active,Breast,Allograft Heterotopic,Spherical,1.8444772,-2.1,8.508192769
+365,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.0119931,0,1.663636231
+366,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.0119931,0,1.705969727
+367,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.0119931,0,1.683516602
+368,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.0334238,0,2.255202842
+369,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.0334238,0,2.76216925
+370,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.0334238,0,2.326550387
+371,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.071882,0,1.364524743
+372,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.071882,0,1.172861757
+373,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.071882,0,1.508825581
+374,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,1.9637878,0,1.772790179
+375,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,1.9637878,0,2.381105263
+376,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,1.9637878,0,2.299807018
+377,Organic,Other OM,Passive,Lung,Xenograft Heterotopic,Spherical,2.0881361,-13.2,0.825960632
+378,Organic,Other OM,Passive,Skin,Allograft Orthotopic,Rod,2.279895,-10.1,0.111347409
+379,Organic,Liposome,Active,Cervix,Xenograft Heterotopic,Spherical,2.2586373,-5.7,10.9933661
+380,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,NA,-19.2,0.070613661
+381,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,NA,-20.3,0.049652451
+382,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,NA,-21.2,0.133143048
+383,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,NA,-22.2,0.075822029
+384,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,NA,-21.5,0.188959514
+385,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,NA,-18.9,0.355029622
+386,Inorganic,Other IM,Active,Brain,Xenograft Orthotopic,Spherical,2,-32.5,3.804375
+387,Organic,Polymeric,Active,Lung,Xenograft Heterotopic,Spherical,1.3974185,-15.5,6.24625
+388,Organic,Polymeric,Active,Breast,Xenograft Orthotopic,Spherical,1.9542425,-13.9,0.142574601
+389,Organic,Polymeric,Active,Breast,Xenograft Orthotopic,Spherical,1.9542425,-13.9,0.140054793
+390,Organic,Polymeric,Passive,Colon,Xenograft Heterotopic,Other,1.1139434,NA,1.960891737
+391,Inorganic,Other IM,Active,Lung,Xenograft Heterotopic,Plate,2.2304489,-43,0.526814357
+392,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,1.50515,-12,3.697675859
+393,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,1.7242759,-16,2.999698639
+394,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.1702617,-23,2.622589272
+395,Organic,Polymeric,Active,Glioma,Allograft Orthotopic,Spherical,3.0791812,NA,0.037180349
+396,Organic,Polymeric,Active,Glioma,Allograft Orthotopic,Spherical,3.0791812,NA,0.030106164
+397,Organic,Polymeric,Active,Glioma,Allograft Orthotopic,Spherical,2.4701164,-42.9,0.03368685
+398,Organic,Polymeric,Active,Glioma,Allograft Orthotopic,Spherical,2.4701164,-42.9,0.014226781
+399,Inorganic,Other IM,Active,Breast,Xenograft Orthotopic,Spherical,2.0899051,-20.8,6.31125
+400,Inorganic,Other IM,Active,Breast,Xenograft Orthotopic,Spherical,0.7993405,-6.9,0.969774987
+401,Inorganic,Other IM,Passive,Breast,Xenograft Orthotopic,Spherical,0.7993405,-6.9,0.503451679
+402,Inorganic,Other IM,Active,Breast,Xenograft Orthotopic,Spherical,0.7993405,-6.9,0.419423682
+403,Inorganic,Other IM,Passive,Liver,Xenograft Heterotopic,Rod,2.1760913,NA,0.184382826
+404,Inorganic,Iron Oxide,Passive,Lung,Xenograft Heterotopic,Spherical,2.3836179,-21.9,0.260027352
+405,Organic,Polymeric,Active,Breast,Xenograft Heterotopic,Spherical,2.1702617,NA,0.476721779
+406,Organic,Polymeric,Active,Breast,Xenograft Orthotopic,Spherical,2.0652061,-36.4,0.110019875
+407,Organic,Polymeric,Active,Breast,Xenograft Orthotopic,Spherical,2.0124154,-41.1,0.5357393
+408,Organic,Polymeric,Active,Breast,Xenograft Orthotopic,Spherical,2.0445398,-47.5,0.639316478
+409,Organic,Polymeric,Active,Breast,Xenograft Orthotopic,Spherical,2.0281644,-46.7,1.007921729
+410,Organic,Polymeric,Passive,Liver,Xenograft Heterotopic,Spherical,2.1760913,NA,12.0676573
+411,Inorganic,Other IM,Passive,Glioma,Allograft Orthotopic,Spherical,1.9190781,-30.4,0.000174073
+412,Inorganic,Other IM,Passive,Glioma,Allograft Orthotopic,Spherical,2.4216039,-37.3,0.000274508
+413,Inorganic,Other IM,Passive,Liver,Xenograft Heterotopic,Spherical,NA,6.36,43.51519159
+414,Organic,Liposome,Passive,Liver,Xenograft Heterotopic,Spherical,2,NA,0.912671137
+415,Organic,Other OM,Passive,Breast,Xenograft Heterotopic,Spherical,2.1205739,NA,0.397060839
+416,Organic,Liposome,Active,Breast,Xenograft Orthotopic,Spherical,2.0827854,-4.3,0.336221014
+417,Inorganic,Gold,Passive,Other,Allograft Heterotopic,Spherical,2.60206,-42.57,4.560403364
+418,Inorganic,Silica,Passive,Breast,Xenograft Heterotopic,Spherical,1.1348144,0.77,6.221122112
+419,Inorganic,Silica,Passive,Breast,Xenograft Heterotopic,Spherical,1.1348144,0.77,0.8576379
+420,Inorganic,Other IM,Passive,Breast,Xenograft Heterotopic,Spherical,2.1448854,-16.49,2.302500429
+421,Inorganic,Other IM,Passive,Cervix,Xenograft Heterotopic,Spherical,2.1649474,NA,0.272874407
+422,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,2.1583625,NA,1.009324339
+423,Organic,Liposome,Passive,Breast,Xenograft Heterotopic,Spherical,2.1119343,-7.92,0.000802715
+424,Organic,Liposome,Passive,Breast,Xenograft Heterotopic,Spherical,2.0599419,-24.3,0.001788275
+425,Organic,Liposome,Passive,Liver,Xenograft Heterotopic,Spherical,2.1994809,-8.96,0.5028
+426,Organic,Liposome,Passive,Liver,Xenograft Heterotopic,Spherical,2.168792,-12.54,0.326
+427,Organic,Liposome,Passive,Liver,Xenograft Heterotopic,Spherical,2.1439511,-13.92,0.3012
+428,Organic,Polymeric,Passive,Breast,Allograft Orthotopic,Rod,NA,-20.8,0.321542703
+429,Organic,Polymeric,Passive,Breast,Allograft Orthotopic,Rod,NA,-14.7,1.436287565
+430,Organic,Liposome,Passive,Colon,Allograft Heterotopic,Spherical,2.0791812,-25,0.178462791
+431,Organic,Liposome,Passive,Colon,Allograft Heterotopic,Spherical,2.1303338,-18,0.613816474
+432,Inorganic,Other IM,Passive,Breast,Xenograft Heterotopic,Plate,2.4913617,-10.96,0.295206525
+433,Inorganic,Other IM,Passive,Breast,Xenograft Heterotopic,Plate,2.4913617,-20,0.85783439
+434,Inorganic,Gold,Active,Other,Allograft Heterotopic,Rod,2.155943,-8.8,3.896361892
+435,Organic,Polymeric,Passive,Breast,Allograft Orthotopic,Spherical,1.5156089,-1.74,4.064847781
+436,Organic,Polymeric,Passive,Breast,Allograft Orthotopic,Spherical,1.5156089,-1.74,2.109310897
+437,Inorganic,Other IM,Active,Breast,Xenograft Heterotopic,Spherical,2.3085644,-22.2,0.483567837
+438,Inorganic,Other IM,Active,Breast,Xenograft Heterotopic,Spherical,2.3085644,-22.2,1.438785414
+439,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Rod,2.4510799,-19.7,0.01498037
+440,Inorganic,Other IM,Active,Cervix,Xenograft Heterotopic,Spherical,2.39794,-15.8,0.959773529
+441,Organic,Polymeric,Passive,Liver,Xenograft Heterotopic,Spherical,2.4473131,-2.629,0.433061571
+442,Organic,Polymeric,Passive,Liver,Xenograft Heterotopic,Spherical,2.4720247,-1.078,0.440492399
+443,Inorganic,Other IM,Active,Breast,Xenograft Heterotopic,Plate,2,-8,0.845213857
+444,Inorganic,Other IM,Passive,Sarcoma,Xenograft Heterotopic,Spherical,1.3222193,-25,2.78544146
+445,Inorganic,Other IM,Active,Lung,Xenograft Heterotopic,Plate,2.0413927,NA,0.215560977
+446,Inorganic,Other IM,Active,Lung,Xenograft Heterotopic,Plate,2.0413927,NA,0.578098987
+447,Inorganic,Other IM,Passive,Breast,Xenograft Heterotopic,Spherical,2.3718065,-20.9,0.891158019
+448,Inorganic,Other IM,Passive,Breast,Xenograft Heterotopic,Spherical,2.3718065,-20.9,0.472291102
+449,Organic,Polymeric,Passive,Breast,Allograft Orthotopic,Rod,NA,-41.93,0.029302745
+450,Organic,Polymeric,Passive,Breast,Allograft Orthotopic,Rod,NA,-29.6,0.0675
+451,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.0166155,-3,0.017970916
+452,Hybrid,Hybrid,Active,Breast,Xenograft Heterotopic,Spherical,2.3348557,-18.7,6.755770023
+453,Organic,Liposome,Passive,Pancreas,Xenograft Heterotopic,Spherical,2.0863598,-1,0.100961675
+454,Organic,Polymeric,Active,Ovary,Xenograft Heterotopic,Spherical,1.4771213,-25.8,0.152960018
+455,Inorganic,Other IM,Passive,Breast,Xenograft Heterotopic,Spherical,2.3525684,-18.57,2.124732824
+456,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.0205479,-1.66452,1.372671756
+457,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.0228311,-1.86774,1.61817577
+458,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.0205479,-1.66452,1.207880435
+459,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,1.9589041,-2.00806,1.885869565
+460,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,1.9931507,-1.95484,0.96682503
+461,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,1.9611872,-1.91613,0.527353552
+462,Organic,Liposome,Active,Sarcoma,Xenograft Heterotopic,Spherical,2.1341771,-24.2,4.239076258
+463,Organic,Liposome,Active,Sarcoma,Xenograft Heterotopic,Spherical,2.1341771,-24.2,5.320838044
+464,Organic,Liposome,Active,Sarcoma,Xenograft Heterotopic,Spherical,2.1341771,-24.2,23.09143592
+465,Organic,Other OM,Active,Breast,Xenograft Orthotopic,Rod,2.4326487,-13.7,0.003370004
+466,Inorganic,Other IM,Active,Glioma,Xenograft Orthotopic,Spherical,1.8034571,-2.2,7.177349058
+467,Inorganic,Other IM,Active,Glioma,Xenograft Orthotopic,Spherical,1.8034571,-2.2,0.140795499
+468,Organic,Other OM,Passive,Colon,Allograft Orthotopic,Other,NA,NA,0.355039267
+469,Organic,Other OM,Active,Breast,Xenograft Heterotopic,Spherical,1.544068,-30.9,1.562473119
+470,Organic,Polymeric,Passive,Colon,Xenograft Heterotopic,Spherical,1.9542425,NA,0.082133689
+471,Organic,Polymeric,Passive,Colon,Allograft Orthotopic,Spherical,1.30103,-0.3,0.26954518
+472,Inorganic,Other IM,Active,Ovary,Xenograft Heterotopic,Spherical,2.0374265,3.45,0.593699532
+473,Hybrid,Hybrid,Active,Cervix,Xenograft Heterotopic,Spherical,2.2474823,20.5,10.77953376
+474,Organic,Polymeric,Active,Liver,Xenograft Heterotopic,Spherical,2.25042,-15.7,0.7153775
+475,Organic,Polymeric,Passive,Liver,Xenograft Heterotopic,Spherical,2.1492191,-17.6,0.27947125
+476,Inorganic,Other IM,Active,Glioma,Xenograft Heterotopic,Spherical,1.4216039,NA,0.58393
+477,Inorganic,Other IM,Passive,Glioma,Xenograft Heterotopic,Spherical,1,NA,0.304286356
+478,Organic,Other OM,Active,Lung,Xenograft Heterotopic,Plate,2,-45.3,0.078238602
+479,Inorganic,Silica,Active,Breast,Xenograft Heterotopic,Spherical,0.8633229,NA,0.447303326
+480,Inorganic,Silica,Passive,Breast,Xenograft Heterotopic,Spherical,0.8573325,NA,0.180374986
+481,Inorganic,Silica,Active,Breast,Xenograft Heterotopic,Spherical,0.8633229,NA,0.150509297
+482,Inorganic,Silica,Active,Breast,Xenograft Orthotopic,Spherical,0.80618,NA,3.66138243
+483,Inorganic,Silica,Passive,Breast,Xenograft Orthotopic,Spherical,0.80618,NA,0.1086016
+484,Organic,Polymeric,Active,Prostate,Xenograft Heterotopic,Spherical,NA,-27.2,0.764536232
+485,Organic,Polymeric,Passive,Prostate,Xenograft Heterotopic,Spherical,NA,-13.5,0.405573697
+486,Inorganic,Other IM,Active,Cervix,Xenograft Heterotopic,Spherical,1.4578819,48.1,1.288404229
+487,Inorganic,Other IM,Passive,Cervix,Xenograft Heterotopic,Other,2.2820508,-21.24,0.463824209
+488,Inorganic,Silica,Active,Breast,Xenograft Heterotopic,Spherical,1.8627275,NA,0.064774853
+489,Inorganic,Silica,Active,Breast,Xenograft Heterotopic,Spherical,1.8863215,NA,0.088575
+490,Hybrid,Hybrid,Passive,Glioma,Xenograft Heterotopic,Spherical,NA,NA,1.171585068
+491,Inorganic,Other IM,Passive,Cervix,Xenograft Heterotopic,Other,2.3617278,NA,0.367423039
+492,Inorganic,Silica,Passive,Liver,Xenograft Heterotopic,Spherical,2.1075491,-7.43,0.657221203
+493,Organic,Hydrogel,Active,Lung,Xenograft Heterotopic,Spherical,2.3961993,0,0.539457325
+494,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.2174839,-35.8,2.36114298
+495,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.209515,-37.2,2.69493966
+496,Organic,Polymeric,Active,Breast,Xenograft Heterotopic,Spherical,NA,-12.03,1.704821558
+497,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,NA,-17.81,0.806413141
+498,Organic,Liposome,Active,Breast,Xenograft Heterotopic,Spherical,NA,-12.5,4.563369258
+499,Organic,Hydrogel,Passive,Liver,Allograft Heterotopic,Spherical,2.2944662,-36,0.369950488
+500,Organic,Hydrogel,Passive,Liver,Allograft Heterotopic,Spherical,2.4409091,-32,0.590925728
+501,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.0902581,-10.4,0.306314781
+502,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.1099159,-22.7,0.219074736
+503,Organic,Liposome,Passive,Ovary,Xenograft Heterotopic,Spherical,1.7619278,-65.12,0.027797855
+504,Hybrid,Hybrid,Active,Breast,Xenograft Heterotopic,Spherical,2.0219538,-8.421,0.515045483
+505,Inorganic,Other IM,Active,Lung,Xenograft Heterotopic,Spherical,2.0086002,NA,13.5739972
+506,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.1587544,-33.82,0.280379653
+507,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.2025973,-37.97,0.326574324
+508,Organic,Other OM,Active,Lung,Xenograft Heterotopic,Spherical,2.2301934,-17.3,4.187611031
+509,Inorganic,Other IM,Passive,Breast,Xenograft Heterotopic,Spherical,1.9903389,0.137,4.976404489
+510,Inorganic,Other IM,Passive,Other,Allograft Orthotopic,Plate,1.3424227,-10.6,0.839419795
+511,Organic,Polymeric,Passive,Breast,Xenograft Orthotopic,Spherical,2.2718416,7.9,3.829121763
+512,Inorganic,Other IM,Passive,Liver,Allograft Heterotopic,Other,1.6127839,NA,0.353367017
+513,Inorganic,Other IM,Passive,Breast,Xenograft Heterotopic,Spherical,2.1139434,9.5,1.690449936
+514,Inorganic,Gold,Active,Pancreas,Xenograft Heterotopic,Spherical,1.5423274,-21.3,0.457392284
+515,Inorganic,Gold,Active,Pancreas,Xenograft Heterotopic,Spherical,1.5423274,-21.3,2.861981308
+516,Inorganic,Gold,Active,Pancreas,Xenograft Orthotopic,Spherical,1.5423274,-21.3,0.34408443
+517,Organic,Other OM,Passive,Ovary,Xenograft Heterotopic,Other,2.0729847,-26.71,0.004865047
+518,Organic,Other OM,Active,Ovary,Xenograft Heterotopic,Other,2.107888,-21.42,0.020384068
+519,Inorganic,Gold,Active,Breast,Xenograft Heterotopic,Spherical,1.307496,-17.6,1.920999564
+520,Organic,Other OM,Active,Liver,Allograft Heterotopic,Spherical,1.9395193,NA,2.195316615
+521,Organic,Liposome,Passive,Colon,Xenograft Heterotopic,Spherical,2.0211893,-37.864,0.163529784
+522,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,NA,-23.9,0.063748387
+523,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,NA,-14.1,0.078357547
+524,Organic,Dendrimer,Active,Liver,Allograft Heterotopic,Spherical,1.90768,-9.03,4.571579046
+525,Organic,Polymeric,Passive,Ovary,Xenograft Heterotopic,Spherical,1.1139434,-0.7,0.541007504
+526,Organic,Polymeric,Passive,Ovary,Xenograft Heterotopic,Spherical,1.3443923,-0.8,0.380943351
+527,Organic,Polymeric,Passive,Ovary,Xenograft Heterotopic,Spherical,1.6866363,-0.11,0.395122841
+528,Inorganic,Other IM,Active,Breast,Xenograft Orthotopic,Spherical,1.8435069,-12.9,1.677859324
+529,Organic,Other OM,Active,Breast,Xenograft Heterotopic,Spherical,2.2035768,-10.98,4.086698447
+530,Organic,Other OM,Active,Breast,Xenograft Heterotopic,Spherical,2.2089785,-10.76,11.03037495
+531,Hybrid,Hybrid,Active,Skin,Allograft Heterotopic,Spherical,2,-13.902,9.554276732
+532,Organic,Polymeric,Passive,Colon,Allograft Orthotopic,Spherical,1.30103,-0.3,0.283977706
+533,Organic,Other OM,Passive,Lung,Xenograft Heterotopic,Spherical,2.2281436,-17.2,1.871539187
+534,Organic,Polymeric,Active,Sarcoma,Allograft Heterotopic,Spherical,2.3617278,NA,0.001148571
+535,Inorganic,Gold,Active,Cervix,Xenograft Heterotopic,Rod,1.38,-18,2.36
+536,Inorganic,Gold,Active,Brain,Xenograft Heterotopic,Other,1.38,-21.3,1.87
+537,Inorganic,Gold,Passive,Brain,Xenograft Heterotopic,Other,1.41,21.7,0.69
+538,Inorganic,Gold,Passive,Brain,Xenograft Heterotopic,Other,1.32,24.6,0.61
+539,Inorganic,Gold,Passive,Brain,Xenograft Heterotopic,Other,1.26,25.4,0.43
+540,Organic,Dendrimer,Passive,Ovary,Xenograft Orthotopic,Spherical,0.9,-1.3,12.6
+541,Organic,Polymeric,Passive,Ovary,Xenograft Orthotopic,Spherical,0.82,-1.5,4.75
+542,Organic,Dendrimer,Passive,Colon,Allograft Heterotopic,Spherical,1.23,-6.5,1.71
+543,Organic,Dendrimer,Passive,Colon,Allograft Heterotopic,Spherical,0.77,19.8,0.27
+544,Organic,Dendrimer,Active,Cervix,Xenograft Heterotopic,Spherical,0.7,,9.33
+545,Organic,Dendrimer,Passive,Cervix,Xenograft Heterotopic,Spherical,0.7,,3.31
+546,Inorganic,Gold,Active,Stomach,Xenograft Heterotopic,Spherical,0.79,-5,12.46
+547,Inorganic,Gold,Active,Brain,Xenograft Heterotopic,Spherical,1.86,6.1,0.06
+548,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,0.7,,3.84
+549,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,0.7,,2.26
+550,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,0.7,2.5,2.19
+551,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,1.34,,2.01
+552,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Spherical,1.34,,1.14
+553,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,1.04,,0.53
+554,Organic,Other OM,Passive,Brain,Xenograft Heterotopic,Rod,1.98,-36,0.08
+555,Organic,Polymeric,Passive,Ovary,Xenograft Orthotopic,Spherical,1.21,-19.2,6.91
+556,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Rod,2.21,-4.3,4.02
+557,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Rod,2.34,-4.3,3.14
+558,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Rod,2.51,-4.3,2.7
+559,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Rod,2.6,-4.3,2.45
+560,Organic,Other OM,Active,Lung,Xenograft Heterotopic,Spherical,2.23,-0.8,0.47
+561,Organic,Other OM,Passive,Lung,Xenograft Heterotopic,Spherical,2.13,0.6,0.44
+562,Organic,Other OM,Passive,Lung,Xenograft Heterotopic,Spherical,1.93,71.3,0.17
+563,Organic,Other OM,Passive,Other,Allograft Heterotopic,Spherical,2.59,-46.6,0.05
+564,Inorganic,Gold,Active,Skin,Allograft Orthotopic,Spherical,0.43,-18.4,2.23
+565,Inorganic,Gold,Active,Skin,Allograft Orthotopic,Spherical,0.43,-22.1,1.46
+566,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,0.43,-42.3,1.44
+567,Inorganic,Gold,Active,Skin,Allograft Orthotopic,Spherical,0.43,-25.6,1.37
+568,Inorganic,Gold,Active,Skin,Allograft Orthotopic,Spherical,0.43,-16.6,1.15
+569,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,0.43,-16.8,0.71
+570,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Spherical,1.84,0,6.09
+571,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Other,2.05,0,2.14
+572,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Plate,2.12,0,1.46
+573,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Rod,1.89,0,0.61
+574,Organic,Polymeric,Active,Brain,Xenograft Orthotopic,Spherical,2.27,-29.5,1
+575,Organic,Polymeric,Active,Brain,Xenograft Orthotopic,Spherical,2.24,-27.2,0.72
+576,Organic,Polymeric,Passive,Brain,Xenograft Orthotopic,Spherical,2.23,-32.8,0.72
+577,Organic,Polymeric,Passive,Brain,Xenograft Orthotopic,Spherical,2.22,-30.5,0.63
+578,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,2.13,,0.03
+579,Organic,Other OM,Active,Skin,Allograft Orthotopic,Spherical,2.17,-20.5,2.39
+580,Organic,Other OM,Active,Skin,Allograft Orthotopic,Spherical,2.2,-18.1,1.57
+581,Inorganic,Gold,Active,Skin,Allograft Orthotopic,Rod,1.71,3,6.85
+582,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,2.24,-22.9,0.04
+583,Organic,Polymeric,Passive,Breast,Xenograft Orthotopic,Spherical,2.01,-3.4,8.27
+584,Organic,Polymeric,Passive,Breast,Xenograft Orthotopic,Spherical,1.98,-3.4,3.03
+585,Organic,Polymeric,Passive,Breast,Xenograft Orthotopic,Spherical,2.02,-3.4,1.39
+586,Organic,Polymeric,Passive,Breast,Xenograft Orthotopic,Spherical,1.97,-3.4,0.9
+587,Organic,Polymeric,Passive,Breast,Xenograft Orthotopic,Spherical,1.99,-3.4,0.2
+588,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Spherical,1.34,-25.9,1.29
+589,Inorganic,Iron Oxide,Active,Stomach,Xenograft Heterotopic,Spherical,1.35,-4.6,10.69
+590,Inorganic,Iron Oxide,Active,Stomach,Xenograft Heterotopic,Spherical,1.45,-0.6,9.19
+591,Inorganic,Iron Oxide,Active,Stomach,Xenograft Heterotopic,Spherical,1.6,-4.5,5.74
+592,Inorganic,Iron Oxide,Active,Stomach,Xenograft Heterotopic,Spherical,1.61,-3.3,5.46
+593,Organic,Polymeric,Active,Lung,Allograft Heterotopic,Spherical,2.27,-24.7,0.19
+594,Organic,Polymeric,Passive,Lung,Allograft Heterotopic,Spherical,2.25,-23.1,0.09
+595,Inorganic,Gold,Passive,Breast,Xenograft Orthotopic,Spherical,0.74,0,1.74
+596,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,2.03,-2.3,2.15
+597,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.7,0.1,0.45
+598,Organic,Polymeric,Active,Breast,Allograft Orthotopic,Spherical,1.74,-17,1.59
+599,Organic,Polymeric,Passive,Breast,Allograft Orthotopic,Spherical,1.7,-20,1.02
+600,Organic,Liposome,Passive,Other,Allograft Orthotopic,Spherical,2.2,-17.4,0.03
+601,Organic,Polymeric,Passive,Breast,Allograft Orthotopic,Spherical,1.6,,0.59
+602,Organic,Other OM,Active,Breast,Xenograft Heterotopic,Rod,2.38,-10,18.76
+603,Organic,Other OM,Active,Breast,Xenograft Heterotopic,Rod,2.38,3.8,18.48
+604,Organic,Other OM,Passive,Breast,Xenograft Heterotopic,Rod,2.36,-10,7.72
+605,Organic,Other OM,Passive,Breast,Xenograft Heterotopic,Rod,2.36,,7.73
+606,Organic,Other OM,Passive,Breast,Xenograft Heterotopic,Rod,2.38,0,7.22
+607,Organic,Other OM,Active,Colon,Xenograft Heterotopic,Spherical,2.31,-20,0.87
+608,Organic,Dendrimer,Active,Breast,Xenograft Heterotopic,Spherical,0.89,,13.83
+609,Organic,Dendrimer,Active,Breast,Xenograft Heterotopic,Spherical,0.89,,10.91
+610,Organic,Dendrimer,Active,Breast,Xenograft Heterotopic,Spherical,0.89,,7.13
+611,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.69,-1.3,1
+612,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.06,-20,0.02
+613,Inorganic,Gold,Active,Skin,Xenograft Orthotopic,Spherical,1.49,,2.52
+614,Organic,Liposome,Passive,Colon,Allograft Heterotopic,Spherical,2.02,-15,0.33
+615,Organic,Liposome,Passive,Colon,Allograft Heterotopic,Spherical,2.01,-39.5,0.28
+616,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,2,-4,1.36
+617,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,2.04,-4,1.37
+618,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,2.18,-4,1.63
+619,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,2,-4,2.32
+620,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,1.54,-4,0.34
+621,Inorganic,Other IM,Passive,Breast,Allograft Heterotopic,Spherical,2.18,-19,1.98
+622,Organic,Polymeric,Passive,Cervix,Allograft Heterotopic,Spherical,2.03,,0.35
+623,Organic,Polymeric,Passive,Colon,Xenograft Heterotopic,Other,1.2,,1.97
+624,Organic,Other OM,Passive,Liver,Allograft Heterotopic,Spherical,2.06,-31.8,0.08
+625,Organic,Polymeric,Passive,Breast,Allograft Orthotopic,Spherical,2.05,10,0.28
+626,Organic,Other OM,Active,Breast,Allograft Orthotopic,Spherical,2.15,21.7,0.04
+627,Organic,Dendrimer,Active,Other,Allograft Orthotopic,Spherical,1.84,36.7,18.75
+628,Organic,Dendrimer,Passive,Other,Allograft Orthotopic,Spherical,0.83,16.3,5.47
+629,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Spherical,2.26,34.4,0.28
+630,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Other,1.8,10.2,3.07
+631,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Other,1.98,18.7,0.52
+632,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.2,-8.8,0.26
+633,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.18,-10.3,0.14
+634,Organic,Polymeric,Passive,Other,Allograft Orthotopic,Spherical,2.19,,0.12
+635,Organic,Polymeric,Passive,Other,Allograft Orthotopic,Spherical,2.13,,0.08
+636,Organic,Liposome,Passive,Breast,Allograft Heterotopic,Spherical,2.11,5,0.59
+637,Organic,Liposome,Passive,Breast,Allograft Heterotopic,Spherical,2.14,-14,0.39
+638,Organic,Liposome,Passive,Breast,Allograft Heterotopic,Spherical,1.95,-40,0.2
+639,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,1.31,3.9,0.01
+640,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Other,1.7,-9.2,5.76
+641,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Rod,1.17,-11,3.92
+642,Organic,Polymeric,Active,Liver,Xenograft Heterotopic,Spherical,2.05,-6.2,0.34
+643,Organic,Polymeric,Passive,Liver,Xenograft Heterotopic,Spherical,2.04,-5.1,0.22
+644,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,2.02,-4.8,0.55
+645,Organic,Polymeric,Active,Liver,Xenograft Heterotopic,Spherical,2.17,0,0.47
+646,Organic,Polymeric,Passive,Liver,Xenograft Heterotopic,Spherical,2.16,0,0.36
+647,Organic,Polymeric,Passive,Liver,Xenograft Heterotopic,Spherical,2.16,0,0.36
+648,Organic,Other OM,Active,Liver,Xenograft Heterotopic,Spherical,2,-23.1,0.05
+649,Organic,Other OM,Active,Liver,Xenograft Heterotopic,Spherical,2,-23.1,0.05
+650,Organic,Dendrimer,Active,Colon,Allograft Heterotopic,Spherical,2.17,18.4,56.89
+651,Organic,Dendrimer,Passive,Colon,Allograft Heterotopic,Spherical,2.36,30.3,8.62
+652,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Spherical,1.82,-2.6,0.79
+653,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Spherical,1.8,-27.1,0.71
+654,Inorganic,Gold,Active,Prostate,Xenograft Heterotopic,Spherical,1.86,-2.9,0.85
+655,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Spherical,1.78,-10.6,0.07
+656,Inorganic,Other IM,Active,Cervix,Xenograft Heterotopic,Rod,2.22,-14.6,0.28
+657,Organic,Polymeric,Active,Lung,Xenograft Heterotopic,Spherical,2.36,28.3,0.55
+658,Organic,Polymeric,Active,Lung,Xenograft Heterotopic,Spherical,2.36,28.3,0.34
+659,Organic,Polymeric,Passive,Lung,Xenograft Heterotopic,Spherical,2.03,35.6,0.28
+660,Organic,Polymeric,Passive,Lung,Xenograft Heterotopic,Spherical,2.03,35.6,0.28
+661,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,1.98,0,1.11
+662,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.12,-2.3,0.37
+663,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.1,-7.4,0.37
+664,Organic,Other OM,Active,Prostate,Xenograft Heterotopic,Spherical,2.1,,0.26
+665,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.26,-22.6,7.32
+666,Inorganic,Other IM,Passive,Other,Allograft Orthotopic,Spherical,2.05,-9.8,0.87
+667,Inorganic,Other IM,Passive,Other,Allograft Orthotopic,Spherical,2.16,-12.7,0.65
+668,Inorganic,Other IM,Passive,Cervix,Xenograft Heterotopic,Spherical,2.64,-14.4,2.44
+669,Inorganic,Gold,Passive,Skin,Allograft Orthotopic,Spherical,0.65,,9
+670,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.18,0,1.58
+671,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.18,0,0.95
+672,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.21,0,0.77
+673,Inorganic,Gold,Passive,Other,Xenograft Heterotopic,Spherical,1.8,0,0.49
+674,Organic,Liposome,Active,Prostate,Xenograft Heterotopic,Spherical,2.01,-12.2,0.49
+675,Organic,Liposome,Passive,Prostate,Xenograft Heterotopic,Spherical,1.97,-32.2,0.19
+676,Organic,Other OM,Active,Liver,Allograft Heterotopic,Spherical,2.12,-8.2,0.1
+677,Organic,Other OM,Active,Liver,Allograft Heterotopic,Spherical,2.26,-20.3,0.08
+678,Organic,Other OM,Passive,Liver,Allograft Heterotopic,Spherical,1.74,-22.3,1.46
+679,Organic,Liposome,Active,Cervix,Xenograft Heterotopic,Spherical,1.09,27.2,4.23
+680,Organic,Other OM,Active,Other,Allograft Orthotopic,Spherical,2.15,-31,4.42
+681,Organic,Other OM,Active,Other,Allograft Orthotopic,Spherical,2.13,-35.1,3.43
+682,Organic,Polymeric,Passive,Other,Allograft Heterotopic,Spherical,1.11,,1.95
+683,Organic,Polymeric,Passive,Other,Allograft Heterotopic,Spherical,0.6,,0.64
+684,Organic,Polymeric,Active,Breast,Xenograft Heterotopic,Spherical,2.18,-22.1,0.18
+685,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.17,,0.31
+686,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.16,,0.23
+687,Organic,Other OM,Active,Lung,Xenograft Heterotopic,Spherical,2.21,-31.1,0.12
+688,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Rod,1.18,-10,1.66
+689,Inorganic,Gold,Active,Prostate,Xenograft Heterotopic,Rod,1.18,-44.1,0.33
+690,Organic,Polymeric,Passive,Skin,Allograft Orthotopic,Spherical,2.22,-36.7,0.18
+691,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Spherical,2.13,-27.1,0.06
+692,Organic,Other OM,Active,Other,Allograft Orthotopic,Plate,1.51,-6,0.2
+693,Organic,Other OM,Passive,Other,Allograft Orthotopic,Plate,1.51,-6,0.14
+694,Organic,Polymeric,Passive,Colon,Xenograft Heterotopic,Spherical,1.98,-13,0.53
+695,Organic,Polymeric,Active,Skin,Allograft Orthotopic,Spherical,2.18,0,0.82
+696,Organic,Polymeric,Passive,Skin,Allograft Orthotopic,Spherical,2.18,0,0.45
+697,Organic,Polymeric,Passive,Breast,Allograft Orthotopic,Spherical,2.16,-22.7,0.22
+698,Inorganic,Other IM,Passive,Colon,Allograft Heterotopic,Spherical,1.9,-0.5,2.44
+699,Inorganic,Silica,Passive,Breast,Allograft Orthotopic,Spherical,2.41,-27.6,0.26
+700,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.24,8.7,0.25
+701,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.22,12.3,0.16
+702,Inorganic,Gold,Passive,Ovary,Xenograft Orthotopic,Rod,1,1.1,1.69
+703,Inorganic,Gold,Passive,Ovary,Xenograft Orthotopic,Spherical,1.95,-27.1,10.28
+704,Organic,Other OM,Active,Liver,Allograft Heterotopic,Spherical,2.34,-38,0.61
+705,Organic,Other OM,Passive,Liver,Allograft Heterotopic,Spherical,2.31,-26.9,0.52
+706,Organic,Other OM,Passive,Liver,Allograft Heterotopic,Spherical,2.27,-19,0.008
+707,Organic,Liposome,Passive,Breast,Xenograft Heterotopic,Plate,1.75,0,0.45
+708,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,1.31,-2,0.86
+709,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.3,-20.4,3.22
+710,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.44,-23.5,2.63
+711,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.54,-27.2,1.16
+712,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.19,-23.7,4.64
+713,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.41,-23.7,3.13
+714,Organic,Other OM,Active,Breast,Xenograft Heterotopic,Spherical,1.95,-15.6,1.46
+715,Inorganic,Silica,Passive,Liver,Xenograft Heterotopic,Spherical,2.32,27,1.08
+716,Organic,Liposome,Passive,Other,Xenograft Heterotopic,Spherical,2.06,-36.4,0.31
+717,Inorganic,Silica,Passive,Skin,Allograft Orthotopic,Spherical,2.39,-11.7,9.42
+718,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,1.92,0,1.07
+719,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,1.6,0,2.18
+720,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,1.79,0,1.83
+721,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,2,0,1.15
+722,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,1.35,0,0.03
+723,Organic,Polymeric,Active,Lung,Xenograft Heterotopic,Spherical,2.27,21.1,26.47
+724,Organic,Polymeric,Passive,Lung,Xenograft Heterotopic,Spherical,2.22,25.1,12.14
+725,Organic,Liposome,Passive,Other,Xenograft Heterotopic,Spherical,2.05,-39.7,5.26
+726,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,2.09,-15,1.62
+727,Organic,Liposome,Active,Ovary,Xenograft Heterotopic,Spherical,1.9,-36.9,0.33
+728,Organic,Liposome,Passive,Ovary,Xenograft Heterotopic,Spherical,1.76,34.5,0.22
+729,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.03,23.3,1.02
+730,Organic,Polymeric,Active,Liver,Allograft Heterotopic,Spherical,2.28,26.1,0.75
+731,Organic,Other OM,Passive,Liver,Allograft Heterotopic,Rod,2.23,24.2,0.99
+732,Organic,Polymeric,Passive,Liver,Xenograft Heterotopic,Spherical,1.27,-1.8,1.14
+733,Inorganic,Silica,Passive,Breast,Allograft Orthotopic,Spherical,2.03,-14,2.38
+734,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.14,-15.6,0.34
+735,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.11,-9.1,0.27
+736,Organic,Polymeric,Active,Breast,Xenograft Orthotopic,Spherical,2.08,-2.4,0.2
+737,Inorganic,Iron Oxide,Active,Skin,Xenograft Orthotopic,Spherical,1.39,-28.6,1.17
+738,Organic,Other OM,Passive,Lung,Xenograft Heterotopic,Spherical,1.73,0,0.25
+739,Organic,Liposome,Passive,Breast,Xenograft Heterotopic,Spherical,2.05,-53.2,0.13
+740,Organic,Liposome,Passive,Breast,Xenograft Heterotopic,Spherical,2.36,-52.4,0.09
+741,Organic,Liposome,Passive,Breast,Xenograft Heterotopic,Spherical,2.58,-53.9,0.07
+742,Inorganic,Silica,Active,Breast,Allograft Orthotopic,Rod,2.32,24.1,22.71
+743,Inorganic,Silica,Passive,Breast,Allograft Orthotopic,Rod,2.32,24.1,8.26
+744,Organic,Polymeric,Passive,Prostate,Xenograft Heterotopic,Spherical,1.98,0,4.42
+745,Organic,Polymeric,Active,Cervix,Xenograft Heterotopic,Spherical,1.3,5,3.73
+746,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,1.3,5,1.83
+747,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,2.08,-18,0.26
+748,Inorganic,Other IM,Passive,Colon,Allograft Heterotopic,Spherical,1.69,0,0.4
+749,Organic,Polymeric,Passive,Other,Allograft Orthotopic,Spherical,2.45,-9.7,0.15
+750,Inorganic,Other IM,Active,Breast,Xenograft Heterotopic,Spherical,2.31,-25.5,0.12
+751,Inorganic,Iron Oxide,Active,Breast,Xenograft Heterotopic,Spherical,1.2,,3.7
+752,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,2.21,-19.6,21.12
+753,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,2.07,-13.7,19.37
+754,Organic,Dendrimer,Active,Breast,Allograft Heterotopic,Spherical,1.84,-2.1,10.15
+755,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.03,0,3.86
+756,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,1.96,0,3.25
+757,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,1.96,0,3.43
+758,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.03,0,3.37
+759,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.03,0,2.9
+760,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,1.96,0,2.22
+761,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.01,0,2.31
+762,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.01,0,2.31
+763,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.01,0,2.04
+764,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.07,0,1.96
+765,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.07,0,1.82
+766,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.07,0,1.52
+767,Organic,Other OM,Passive,Lung,Xenograft Heterotopic,Spherical,2.09,-13.2,1.07
+768,Inorganic,Silica,Passive,Colon,Allograft Heterotopic,Spherical,1.27,,0.36
+769,Inorganic,Silica,Active,Cervix,Xenograft Heterotopic,Spherical,2.1,-31.6,3.22
+770,Inorganic,Silica,Passive,Other,Allograft Orthotopic,Spherical,2.35,-17.9,8.27
+771,Organic,Other OM,Passive,Skin,Allograft Orthotopic,Rod,2.28,-10.1,0.13
+772,Inorganic,Iron Oxide,Active,Prostate,Xenograft Heterotopic,Spherical,2.14,-11.6,0.52
+773,Inorganic,Iron Oxide,Active,Brain,Xenograft Heterotopic,Spherical,1.83,,0.45
+774,Inorganic,Iron Oxide,Passive,Brain,Xenograft Heterotopic,Spherical,1.83,,0.21
+775,Inorganic,Iron Oxide,Passive,Breast,Allograft Heterotopic,Spherical,1.71,,1.3
+776,Inorganic,Silica,Active,Brain,Xenograft Heterotopic,Spherical,2.35,-3.5,1.49
+777,Inorganic,Silica,Passive,Brain,Xenograft Heterotopic,Spherical,2.34,-3.6,0.84
+778,Inorganic,Silica,Passive,Breast,Allograft Heterotopic,Spherical,1.77,-7.4,0.37
+779,Inorganic,Gold,Passive,Colon,Allograft Heterotopic,Rod,1.48,0,2.39
+780,Inorganic,Silica,Active,Brain,Xenograft Heterotopic,Spherical,2.11,-10.2,1.58
+781,Inorganic,Silica,Passive,Brain,Xenograft Heterotopic,Spherical,2.1,-10.9,0.54
+782,Inorganic,Silica,Active,Breast,Allograft Heterotopic,Spherical,2.29,-5.1,1.86
+783,Inorganic,Silica,Passive,Breast,Allograft Heterotopic,Spherical,2.29,-5.1,0.69
+784,Inorganic,Silica,Active,Breast,Allograft Heterotopic,Spherical,2.24,-3.3,1.14
+785,Inorganic,Silica,Passive,Breast,Allograft Heterotopic,Spherical,2.24,-3.3,0.52
+786,Inorganic,Silica,Active,Skin,Xenograft Orthotopic,Spherical,0.85,-3,0.32
+787,Inorganic,Silica,Passive,Skin,Xenograft Orthotopic,Spherical,0.83,0,0.17
+788,Inorganic,Silica,Active,Breast,Allograft Heterotopic,Spherical,2.23,-2.7,1.24
+789,Inorganic,Silica,Passive,Breast,Allograft Heterotopic,Spherical,2.18,-2.3,0.62
+790,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Rod,1.62,-0.1,0.99
+791,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Spherical,0.86,-23.5,0.61
+792,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Rod,1.65,-14.1,0.47
+793,Inorganic,Gold,Passive,Breast,Allograft Heterotopic,Rod,1.31,-20.2,0.31
+794,Inorganic,Other IM,Active,Cervix,Xenograft Heterotopic,Spherical,1.73,-12.4,6.67
+795,Inorganic,Other IM,Active,Brain,Xenograft Heterotopic,Spherical,1.51,,4.87
+796,Inorganic,Other IM,Passive,Pancreas,Xenograft Heterotopic,Other,2.28,-21.9,0.44
+797,Inorganic,Gold,Passive,Brain,Xenograft Heterotopic,Spherical,1.58,-5,7.44
+798,Inorganic,Gold,Active,Brain,Xenograft Heterotopic,Spherical,1.62,-5,4.18
+799,Inorganic,Other IM,Passive,Colon,Allograft Heterotopic,Spherical,1.9,-0.5,0.46
+800,Inorganic,Other IM,Active,Lung,Xenograft Heterotopic,Spherical,2,3,19.7
+801,Inorganic,Iron Oxide,Active,Breast,Xenograft Heterotopic,Spherical,1.3,,7.2
+802,Organic,Polymeric,Passive,Lung,Allograft Heterotopic,Spherical,1.56,-8.5,1.56
+803,Organic,Polymeric,Active,Breast,Allograft Heterotopic,Spherical,1.57,,1.2
+804,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,1.57,,0.64
+805,Inorganic,Gold,Active,Breast,Xenograft Heterotopic,Other,1.84,-9.3,1.77
+806,Organic,Polymeric,Passive,Skin,Xenograft Orthotopic,Spherical,1.86,-0.5,1.84
+807,Organic,Polymeric,Passive,Skin,Xenograft Orthotopic,Spherical,1.86,-0.5,1.19
+808,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,1.35,-1.48,0.65
+809,Organic,Polymeric,Active,Skin,Xenograft Orthotopic,Other,1.94,-24.2,0.06
+810,Organic,Polymeric,Passive,Skin,Xenograft Orthotopic,Other,1.95,-7,0.03
+811,Organic,Polymeric,Passive,Ovary,Xenograft Heterotopic,Rod,2.36,-3.2,0.49
+812,Organic,Polymeric,Passive,Ovary,Xenograft Heterotopic,Other,2.42,-3.4,0.48
+813,Organic,Polymeric,Passive,Lung,Xenograft Heterotopic,Rod,2.33,-3.4,0.91
+814,Organic,Polymeric,Passive,Lung,Xenograft Heterotopic,Rod,2.33,-3.1,0.91
+815,Organic,Polymeric,Active,Breast,Xenograft Heterotopic,Spherical,2.44,-12.1,3.23
+816,Organic,Polymeric,Passive,Breast,Xenograft Heterotopic,Spherical,2.34,-14.3,0.48
+817,Organic,Polymeric,Passive,Pancreas,Xenograft Heterotopic,Spherical,1.48,-2.3,1.35
+818,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.84,-0.9,1.17
+819,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.73,-1.6,1.11
+820,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.48,-2.3,1.71
+821,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,2.04,0.2,0.99
+822,Organic,Polymeric,Passive,Pancreas,Xenograft Heterotopic,Spherical,1.73,-1.6,0.85
+823,Organic,Polymeric,Passive,Pancreas,Xenograft Heterotopic,Spherical,2.04,0.2,0.47
+824,Organic,Polymeric,Passive,Pancreas,Xenograft Heterotopic,Spherical,1.84,-0.9,0.5
+825,Inorganic,Gold,Active,Skin,Xenograft Orthotopic,Spherical,1.69,-0.6,29.88
+826,Inorganic,Gold,Active,Skin,Xenograft Orthotopic,Spherical,1.78,-11,30.24
+827,Inorganic,Gold,Active,Skin,Xenograft Orthotopic,Spherical,2,-9,29.78
+828,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,1.67,-6.7,23.4
+829,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,1.81,-15,17.52
+830,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,2.02,-10,14.77
+831,Inorganic,Gold,Active,Skin,Xenograft Orthotopic,Spherical,2.24,-5,11.15
+832,Inorganic,Gold,Passive,Skin,Xenograft Orthotopic,Spherical,2.22,-6,6.41
+833,Organic,Polymeric,Active,Breast,Allograft Heterotopic,Spherical,1.85,4,0.92
+834,Organic,Polymeric,Active,Breast,Allograft Heterotopic,Spherical,1.94,2,0.77
+835,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,1.81,3,0.41
+836,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.95,-1,0.36
+837,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.94,-0.5,0.22
+838,Organic,Polymeric,Active,Cervix,Xenograft Heterotopic,Spherical,1.89,-7,1.15
+839,Organic,Polymeric,Active,Cervix,Xenograft Heterotopic,Spherical,1.96,-9.3,1.15
+840,Organic,Polymeric,Active,Cervix,Xenograft Heterotopic,Spherical,1.84,-2,1.07
+841,Organic,Polymeric,Active,Cervix,Xenograft Heterotopic,Spherical,1.86,-2.3,1.02
+842,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,1.81,-0.4,0.88
+843,Organic,Polymeric,Active,Cervix,Xenograft Heterotopic,Spherical,1.84,-1.1,0.89
+844,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.6,-2,2.02
+845,Organic,Polymeric,Active,Breast,Allograft Orthotopic,Spherical,1.35,0,5.82
+846,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.81,-2,1.35
+847,Organic,Polymeric,Passive,Other,Allograft Heterotopic,Spherical,2.35,,2.45
+848,Organic,Polymeric,Passive,Cervix,Xenograft Heterotopic,Spherical,1.3,,0.34
+849,Organic,Polymeric,Active,Cervix,Xenograft Heterotopic,Spherical,1.3,,0.25
+850,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,2.13,-15.8,0.91
+851,Inorganic,Gold,Passive,Brain,Xenograft Heterotopic,Spherical,0.79,,1.34
+852,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.17,-13.2,12.47
+853,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.2,-23.2,10.56
+854,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.19,-38.4,9.9
+855,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.18,34.6,5.09
+856,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.66,-25.1,4.74
+857,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.18,25.5,4.16
+858,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.18,14.8,2.85
+859,Organic,Polymeric,Passive,Liver,Allograft Heterotopic,Spherical,2.48,24.4,2.78
+860,Organic,Polymeric,Passive,Colon,Allograft Heterotopic,Spherical,1.6,-4,1.81
+861,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,2.44,16.4,3.64
+862,Organic,Polymeric,Passive,Breast,Allograft Heterotopic,Spherical,2.6,38.1,0.67
+863,Organic,Other OM,Active,Breast,Allograft Heterotopic,Plate,1.57,-2,1.24
+864,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Plate,1.42,-16.4,0.64
+865,Organic,Other OM,Active,Breast,Allograft Heterotopic,Plate,1.43,-0.1,1.18
+866,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Plate,1.34,-9.5,0.52
+867,Organic,Other OM,Passive,Skin,Allograft Orthotopic,Plate,1.95,-30,8.07
+868,Organic,Other OM,Active,Brain,Xenograft Heterotopic,Plate,1.52,-5,0.56
+869,Organic,Other OM,Passive,Brain,Xenograft Heterotopic,Plate,1.44,-9.5,0.3
+870,Organic,Other OM,Active,Breast,Allograft Heterotopic,Plate,1.43,-0.1,1.06
+871,Organic,Other OM,Passive,Breast,Allograft Heterotopic,Plate,1.34,-9.5,0.75
+872,Organic,Other OM,Active,Brain,Xenograft Heterotopic,Rod,0.4,,3.97
+873,Organic,Other OM,Active,Brain,Xenograft Heterotopic,Rod,0.4,,1.44
+874,Organic,Other OM,Passive,Brain,Xenograft Heterotopic,Rod,0.4,,1.29
+875,Organic,Other OM,Passive,Brain,Xenograft Heterotopic,Rod,0.4,,0.85
+876,Organic,Liposome,Passive,Cervix,Xenograft Orthotopic,Spherical,1.98,-59.4,2.2
+877,Inorganic,Gold,Passive,Prostate,Xenograft Heterotopic,Spherical,1.44,,0.14
+878,Organic,Liposome,Passive,Breast,Allograft Orthotopic,Spherical,1.9,-36.1,0.17
+879,Organic,Liposome,Active,Breast,Allograft Heterotopic,Spherical,2.59,20,1.73
+880,Organic,Liposome,Passive,Breast,Allograft Orthotopic,Spherical,2.08,0,1.14
+881,Organic,Liposome,Passive,Kidney,Xenograft Heterotopic,Spherical,1.4,-3,0.12
+882,Organic,Liposome,Passive,Kidney,Xenograft Heterotopic,Spherical,1.97,-6,0.1
+883,Organic,Liposome,Passive,Kidney,Xenograft Heterotopic,Spherical,1.71,-4,0.06
+884,Organic,Liposome,Active,Colon,Allograft Heterotopic,Spherical,2.35,,1.1
+885,Organic,Liposome,Passive,Colon,Allograft Heterotopic,Spherical,2.23,,0.65
+886,Inorganic,Gold,Passive,Cervix,Xenograft Heterotopic,Spherical,1.23,-9.8,1.55
+887,Inorganic,Gold,Passive,Cervix,Xenograft Heterotopic,Spherical,1.49,-10.5,0.86
+888,Organic,Liposome,Passive,Colon,Allograft Heterotopic,Spherical,2.07,0,0.61
+889,Organic,Liposome,Passive,Other,Xenograft Heterotopic,Spherical,2.3,-2,0.96
+890,Organic,Liposome,Passive,Skin,Xenograft Orthotopic,Spherical,2,0,1.59
