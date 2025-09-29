@@ -1,0 +1,2006 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+# 设置 matplotlib 和 seaborn 样式
+plt.rcParams['font.sans-serif'] = ['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
+
+import os
+
+# 创建图像保存路径
+SAVE_DIR = "figures1"
+os.makedirs(SAVE_DIR, exist_ok=True)
+
+# 读取数据集
+df = pd.read_csv(r"F:\科研训练计划\挑战杯\biao 1.csv")
+print("数据集形状:", df.shape)
+print("列名称:", df.columns.tolist())
+display(df.head(5))  # 显示前5行数据
+
+# 基础数据描述和缺失值检查
+print(df.info())  # 各列非空计数和类型
+display(df.describe())  # 数值列的统计概览
+
+# 检查每列缺失值数量
+missing_counts = df.isna().sum()
+print("各列缺失值数量：\n", missing_counts)
+
+# 计算75%分位点
+high_thr = df['DE_tumor'].quantile(0.75)
+
+# 直接进行二分类：高（>=75%）为1，非高为0
+df['DE_tumor_binary'] = (df['DE_tumor'] >= high_thr).astype(int)
+
+# 显示类别分布
+print("直接二分类后类别分布：", df['DE_tumor_binary'].value_counts().to_dict())
+
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import train_test_split
+
+# ============ 构建交互特============
+
+# 数值特征交叉项
+df['Size_x_Zeta'] = df['Size'] * df['Zeta Potential']
+
+# 数值 × 类别特征（使用条件映射方式）
+df['Size_x_TS_Passive'] = df.apply(lambda row: row['Size'] if row['TS'] == 'Passive' else 0, axis=1)
+df['Zeta_x_Shape_Spherical'] = df.apply(lambda row: row['Zeta Potential'] if row['Shape'] == 'Spherical' else 0, axis=1)
+
+# 类别组合项（字符串拼接）
+df['TM_CT'] = df['TM'].astype(str) + "_" + df['CT'].astype(str)
+df['Shape_Type'] = df['Shape'].astype(str) + "_" + df['Type'].astype(str)
+df['MAT_TS'] = df['MAT'].astype(str) + "_" + df['TS'].astype(str)
+
+# ============ 特征列定义 ============
+
+# 数值特征（包含交叉项）
+numeric_features = [
+    'Size', 'Zeta Potential',
+    'Size_x_Zeta',
+    'Size_x_TS_Passive', 'Zeta_x_Shape_Spherical'
+]
+
+# 类别特征（原始 + 拼接组合）
+categorical_features = [
+    'Type', 'MAT', 'TS', 'CT', 'TM', 'Shape',
+    'TM_CT', 'Shape_Type', 'MAT_TS'
+]
+
+# ============ 预处理器 ============
+
+numeric_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='median')),
+    ('scaler', StandardScaler())
+])
+
+categorical_transformer = OneHotEncoder(drop='first',sparse_output=False, handle_unknown='ignore')
+
+preprocessor = ColumnTransformer(transformers=[
+    ('num', numeric_transformer, numeric_features),
+    ('cat', categorical_transformer, categorical_features)
+])
+
+# ============ 特征与标签定义 + 划分训练测试集 ============
+
+X = df.drop(columns=[
+    'No', 'DE_tumor'
+])
+y = df['DE_tumor_binary']
+
+X_train_raw, X_test_raw, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+print("训练集大小:", X_train_raw.shape, "测试集大小:", X_test_raw.shape)
+print("训练集类别分布:", pd.Series(y_train).value_counts().to_dict())
+
+# 拟合预处理器并转换训练集和测试集
+X_train = preprocessor.fit_transform(X_train_raw)
+X_test = preprocessor.transform(X_test_raw)
+print("预处理后训练特征维度:", X_train.shape)
+
+import numpy as np
+import pandas as pd
+from sklearn.preprocessing import OneHotEncoder
+# 打印原始类别数量
+print(" 原始训练集类别分布：", y_train.value_counts().to_dict())
+
+# 提取多数类和少数类标签
+class_counts = y_train.value_counts()
+major_class = class_counts.idxmax()
+minor_class = class_counts.idxmin()
+n_major = class_counts.max()
+n_minor = class_counts.min()
+
+# 拆分原始数据
+X_major = X_train[y_train == major_class]
+X_minor = X_train[y_train == minor_class]
+y_major = y_train[y_train == major_class]
+y_minor = y_train[y_train == minor_class]
+
+# 上采样少数类
+idx_to_add = np.random.choice(len(X_minor), size=(n_major - n_minor), replace=True)
+X_minor_upsampled = np.vstack([X_minor, X_minor[idx_to_add]])
+y_minor_upsampled = np.concatenate([y_minor, y_minor.iloc[idx_to_add]])
+
+# 合并平衡后的数据
+X_train_balanced = np.vstack([X_major, X_minor_upsampled])
+y_train_balanced = np.concatenate([y_major, y_minor_upsampled])
+
+# 打乱顺序
+perm = np.random.permutation(len(y_train_balanced))
+X_train_balanced = X_train_balanced[perm]
+y_train_balanced = y_train_balanced[perm]
+
+# 输出新类别分布
+print(" 采样后训练集类别分布：", pd.Series(y_train_balanced).value_counts().to_dict())
+
+import os
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# ================= 全局画质与目录 =================
+SAVE_DIR = "figures1"
+os.makedirs(SAVE_DIR, exist_ok=True)
+
+plt.rcParams.update({
+    "figure.dpi": 150,                 # 交互查看清晰
+    "savefig.dpi": 600,                # 导出 PNG 分辨率
+    "savefig.bbox": "tight",           # 裁切空白边
+    "pdf.fonttype": 42,                # 矢量字体嵌入（AI/PS 兼容）
+    "ps.fonttype": 42,
+    "axes.unicode_minus": False,
+    "figure.constrained_layout.use": True
+})
+plt.rcParams['font.family'] = 'Arial'  # 如需中文可改为 'SimHei'
+
+# ============== 工具：同时导出 PNG + SVG + 屏幕显示 ==============
+def export(fig, path_wo_ext: str, show: bool = True):
+    fig.savefig(f"{path_wo_ext}.png", dpi=600, facecolor="white")
+    fig.savefig(f"{path_wo_ext}.svg")  # 矢量版
+    if show:
+        plt.show()
+    plt.close(fig)
+
+# ====== 根据 df 自动识别列类型（请确保 df 已准备好） ======
+categorical_columns = df.select_dtypes(include=['object', 'category']).columns.tolist()
+numeric_columns     = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
+
+# ============== 饼图（高质量） ==============
+def draw_pie_with_legend(data: pd.DataFrame, column: str, save_base: str, show: bool = True):
+    # value_counts 保留 NaN 以便可视化
+    counts = data[column].value_counts(dropna=False)
+    labels = counts.index.astype(str)
+    sizes  = counts.values
+    total  = sizes.sum()
+
+    # 图例项：类别 - 百分比
+    legend_labels = [f"{lab} - {size/total:.1%}" for lab, size in zip(labels, sizes)]
+    palette = sns.color_palette("pastel", len(labels))  # 柔和配色
+
+    fig, ax = plt.subplots(figsize=(9, 9))
+    wedges, _ = ax.pie(
+        sizes,
+        startangle=140,
+        colors=palette,
+        wedgeprops=dict(edgecolor="white", linewidth=1, antialiased=True),
+        normalize=True
+    )
+    ax.set_title(column, fontsize=18)
+    ax.axis('equal')  # 正圆
+    ax.legend(
+        wedges, legend_labels,
+        title=column,
+        loc="center left",
+        bbox_to_anchor=(1.02, 0.5),
+        fontsize=11,
+        title_fontsize=12,
+        frameon=False
+    )
+
+    export(fig, os.path.join(SAVE_DIR, save_base), show=show)
+
+# ============== 直方图（高质量） ==============
+def draw_histogram(data: pd.DataFrame, column: str, save_base: str, show: bool = True):
+    fig, ax = plt.subplots(figsize=(8.5, 5))
+    sns.histplot(
+        data[column].dropna(),  
+        bins="auto",            # 自适应分箱
+        kde=True,
+        edgecolor="white",
+        linewidth=0.6,
+        alpha=0.9,
+        ax=ax
+    )
+    # KDE 线条更清晰
+    for line in ax.lines:
+        line.set_linewidth(2)
+
+    ax.set_title(column, fontsize=16)
+    ax.set_xlabel(column, fontsize=12)
+    ax.set_ylabel("Count", fontsize=12)
+    ax.grid(True, linestyle="--", linewidth=0.5, alpha=0.35)
+
+    export(fig, os.path.join(SAVE_DIR, save_base), show=show)
+
+# ============== 批量绘制并导出（保存+显示） ==============
+for col in categorical_columns:
+    draw_pie_with_legend(df, column=col, save_base=f"pie_{col}", show=True)
+
+for col in numeric_columns:
+    draw_histogram(df, column=col, save_base=f"hist_{col}", show=True)
+
+import os
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+import matplotlib.font_manager as fm
+
+# ========= 基本参数 =========
+SAVE_DIR = "figures1"
+os.makedirs(SAVE_DIR, exist_ok=True)
+
+# 仅保留“原始数值特征”（按你的列名改就行）
+numeric_features = ["Size", "Zeta Potential"]
+
+# ========= 字体（中文可选）=========
+font_path = r"C:/Windows/Fonts/simhei.ttf"
+if os.path.exists(font_path):
+    font_prop = fm.FontProperties(fname=font_path)
+    plt.rcParams['font.family'] = font_prop.get_name()
+plt.rcParams['axes.unicode_minus'] = False
+
+# ========= 画质 & 导出工具 =========
+plt.rcParams.update({
+    "figure.dpi": 150,
+    "savefig.dpi": 600,
+    "savefig.bbox": "tight",
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42,
+    "figure.constrained_layout.use": True
+})
+
+def save_and_show(fig, basepath_wo_ext: str):
+    """保存 PNG + SVG，并显示图像"""
+    fig.savefig(f"{basepath_wo_ext}.png", dpi=600, bbox_inches="tight", facecolor="white")
+    fig.savefig(f"{basepath_wo_ext}.svg", format="svg", bbox_inches="tight")
+    plt.show()  # 显示图像（不提前关闭）
+    plt.close(fig)  # 显示完后关闭，释放内存
+
+# ========= 数据准备 =========
+df["CT"] = df["CT"].astype(str)
+
+# ========= 整体箱型图 =========
+fig, ax = plt.subplots(figsize=(10, 5))
+sns.boxplot(data=df[numeric_features], ax=ax)
+ax.set_title("数值特征整体分布（箱型图）", fontsize=14)
+ax.set_ylabel("取值分布")
+ax.set_xticklabels(numeric_features, rotation=30, ha="right")
+save_and_show(fig, os.path.join(SAVE_DIR, "boxplot_overall"))
+
+# ========= 按 CT 分组的箱型图 =========
+for col in numeric_features:
+    fig, ax = plt.subplots(figsize=(8.5, 5))
+    sns.boxplot(x="CT", y=col, data=df, hue="CT", palette="Set3", ax=ax, legend=False)
+    ax.set_title(f"{col} 按 CT 分组的分布", fontsize=14)
+    ax.set_xlabel("CT 类别")
+    ax.set_ylabel(col)
+    ax.tick_params(axis="x", rotation=30)
+    save_and_show(fig, os.path.join(SAVE_DIR, f"boxplot_{col}_by_CT"))
+
+import os
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+
+# 全局设置：禁用 constrained_layout；坐标文本用正体而非 mathtext 斜体
+plt.rcParams.update({
+    "figure.constrained_layout.use": False,
+    "mathtext.default": "regular"
+})
+
+# 保存路径
+SAVE_DIR = "figures1"
+os.makedirs(SAVE_DIR, exist_ok=True)
+
+# 数值型特征（含交叉）
+numeric_features = [
+    'Size', 'Zeta Potential',
+    'Size_x_Zeta', 'Size_x_TS_Passive', 'Zeta_x_Shape_Spherical'
+]
+# 分类型特征
+categorical_features = ['MAT', 'TM', 'Shape', 'TS']
+
+target = 'DE_tumor'  # 回归任务目标
+
+# —— 对分类型特征做标签编码（仅用于相关性计算）——
+df_encoded = df.copy()
+for col in categorical_features:
+    if col in df_encoded.columns and (df_encoded[col].dtype == 'object' or str(df_encoded[col].dtype).startswith('category')):
+        df_encoded[col] = LabelEncoder().fit_transform(df_encoded[col].astype(str))
+
+def _ensure_cols_exist(data: pd.DataFrame, cols):
+    """只保留当前 DataFrame 中存在的列"""
+    return [c for c in cols if c in data.columns]
+
+def plot_feature_correlation(data: pd.DataFrame, features, target, method, outfile, title_suffix):
+    """绘制 单特征 vs 目标 的相关性热图，并按 |corr| 降序排序"""
+    use_feats = _ensure_cols_exist(data, features)
+    if target not in data.columns:
+        raise KeyError(f"目标列 {target} 不在 DataFrame 中。")
+    selected = use_feats + [target]
+    corr_col = data[selected].corr(method=method)[[target]].drop(index=[target])
+
+    # 按 |相关性| 排序，便于阅读
+    corr_col = corr_col.reindex(corr_col[target].abs().sort_values(ascending=False).index)
+
+    fig, ax = plt.subplots(figsize=(6.2, max(2.5, 0.35*len(corr_col))))
+    sns.heatmap(
+        corr_col, annot=True, cmap='coolwarm', fmt=".2f",
+        vmin=-1, vmax=1, linewidths=0.5, linecolor='white',
+        cbar=True, ax=ax,
+        xticklabels=[target],
+        yticklabels=corr_col.index.tolist()
+    )
+    ax.set_title(f"{title_suffix} vs {target}", fontsize=12)
+    ax.tick_params(axis='x', rotation=0)
+    ax.tick_params(axis='y', rotation=0)
+
+    # 保存为 SVG
+    fig.savefig(os.path.join(SAVE_DIR, outfile), format='svg', bbox_inches='tight')
+    plt.show()
+
+import re, textwrap
+
+def plot_full_correlation(data: pd.DataFrame, outfile, title_suffix, method='pearson'):
+    """
+    全特征相关性矩阵（数值+编码后的分类）：
+    - 按与 target 的 |相关性| 排序，target 放最后
+    - 更强的自动换行，避免标签重叠
+    - 动态画布尺寸与边距
+    """
+    cols = _ensure_cols_exist(data, numeric_features + categorical_features + [target])
+    d = data[cols].copy()
+    corr = d.corr(method=method)
+
+    # 按与目标的 |相关性| 排序（目标列放最后）
+    if target in corr.columns:
+        order = corr[target].drop(labels=[target]).abs().sort_values(ascending=False).index.tolist()
+        ordered_cols = order + [target]
+        corr = corr.loc[ordered_cols, ordered_cols]
+
+    # —— 更强的标签换行 —— #
+    def smart_wrap(s: str, width=8) -> str:
+        s = str(s)
+        # 先把 "_x_" 变成换行×换行，提升可读性
+        s = re.sub(r'_x_', r'\n×\n', s)
+        # 再把下划线替换为空格，便于基于单词的换行
+        s = s.replace('_', ' ')
+        # 按单词宽度换行
+        return textwrap.fill(s, width=width, break_long_words=False, break_on_hyphens=False)
+
+    xlabels = [smart_wrap(c) for c in corr.columns]
+    ylabels = [smart_wrap(c) for c in corr.index]
+
+    # —— 动态画布尺寸（列越多越宽/高） —— #
+    n = len(corr.columns)
+    fig_w = max(10, 0.9 * n)   # 每列约 0.9 inch
+    fig_h = max(7, 0.7 * n)    # 每行约 0.7 inch
+
+    fig, ax = plt.subplots(figsize=(fig_w, fig_h))
+    sns.heatmap(
+        corr, annot=True, cmap='coolwarm', fmt=".2f",
+        vmin=-1, vmax=1, linewidths=0.5, linecolor='white',
+        cbar=True, ax=ax,
+        cbar_kws={'shrink': 0.85, 'pad': 0.02},   # 色条更紧凑
+        xticklabels=xlabels, yticklabels=ylabels
+    )
+    ax.set_title(title_suffix, fontsize=12)
+    ax.tick_params(axis='x', rotation=0, labelsize=10, pad=8)
+    ax.tick_params(axis='y', rotation=0, labelsize=10)
+
+    # 预留更大边距，避免覆盖
+    fig.subplots_adjust(left=0.25, right=0.98, bottom=0.30, top=0.93)
+
+    # 保存为 SVG
+    fig.savefig(os.path.join(SAVE_DIR, outfile), format='svg', bbox_inches='tight')
+    plt.show()
+
+# 连续特征 vs 目标：Pearson
+plot_feature_correlation(
+    df, numeric_features, target,
+    method='pearson',
+    outfile=f"pearson_numeric_vs_{target}.svg",
+    title_suffix="Pearson（连续特征）"
+)
+
+# 分类型特征 vs 目标：Spearman（先编码）
+plot_feature_correlation(
+    df_encoded, categorical_features, target,
+    method='spearman',
+    outfile=f"spearman_categorical_vs_{target}.svg",
+    title_suffix="Spearman（分类型）"
+)
+
+# 全特征相关性矩阵（使用编码后的数据，既反映数值也反映分类）
+plot_full_correlation(
+    df_encoded,
+    outfile="full_feature_correlation.svg",
+    title_suffix="全特征相关性矩阵（按与目标相关性排序）",
+    method='pearson'
+)
+
+import optuna
+import numpy as np
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import cross_val_score, StratifiedKFold
+from sklearn.metrics import (
+    accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+)
+
+# 定义搜索空间
+def objective(trial):
+    max_depth = trial.suggest_int("max_depth", 3, 20)
+    min_samples_split = trial.suggest_int("min_samples_split", 2, 20)
+    min_samples_leaf = trial.suggest_int("min_samples_leaf", 1, 10)
+    max_features = trial.suggest_categorical("max_features", ["sqrt", "log2", None])
+    criterion = trial.suggest_categorical("criterion", ["gini", "entropy"])
+    class_weight = trial.suggest_categorical("class_weight", [None, "balanced"])
+
+    model = DecisionTreeClassifier(
+        max_depth=max_depth,
+        min_samples_split=min_samples_split,
+        min_samples_leaf=min_samples_leaf,
+        max_features=max_features,
+        criterion=criterion,
+        class_weight=class_weight,
+        random_state=42
+    )
+
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    f1 = cross_val_score(model, X_train_balanced, y_train_balanced, cv=cv, scoring='f1').mean()
+    return f1
+
+# 创建优化器并执行
+study = optuna.create_study(direction='maximize')
+study.optimize(objective, n_trials=50)
+
+# 打印最佳参数
+print("贝叶斯优化最佳参数:")
+for param, value in study.best_params.items():
+    print(f"  {param}: {value}")
+
+best_dt = DecisionTreeClassifier(**study.best_params, random_state=42)
+
+# 交叉验证评估
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+cv_scores = cross_val_score(best_dt, X_train_balanced, y_train_balanced, cv=cv, scoring='f1')
+print("\n交叉验证 F1 分数:", np.round(cv_scores, 3))
+print("平均 F1: {:.3f} ± {:.3f}".format(np.mean(cv_scores), np.std(cv_scores)))
+
+# 训练并在完整测试集上预测
+best_dt.fit(X_train_balanced, y_train_balanced)
+y_pred_dt = best_dt.predict(X_test)                      # 预测标签
+y_prob_dt = best_dt.predict_proba(X_test)[:, 1]           # 预测概率（正类）
+
+# 输出评估结果
+print("\n测试集评估：")
+print("决策树 - 准确率: {:.3f}".format(accuracy_score(y_test, y_pred_dt)))
+print("决策树 - 精确率: {:.3f}".format(precision_score(y_test, y_pred_dt, zero_division=0)))
+print("决策树 - 召回率: {:.3f}".format(recall_score(y_test, y_pred_dt)))
+print("决策树 - F1分数: {:.3f}".format(f1_score(y_test, y_pred_dt)))
+print("决策树 - AUC: {:.3f}".format(roc_auc_score(y_test, y_prob_dt)))
+
+import optuna
+import numpy as np
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import cross_val_score, StratifiedKFold
+from sklearn.metrics import (
+    accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+)
+from sklearn.exceptions import FitFailedWarning
+import warnings
+
+warnings.filterwarnings("ignore", category=FitFailedWarning)
+
+def objective(trial):
+    n_estimators = trial.suggest_int("n_estimators", 100, 800, step=50)
+    max_depth = trial.suggest_int("max_depth", 5, 40)
+    min_samples_split = trial.suggest_int("min_samples_split", 2, 20)
+    min_samples_leaf = trial.suggest_int("min_samples_leaf", 1, 10)
+    max_features = trial.suggest_categorical("max_features", ["sqrt", "log2", None])
+    class_weight = trial.suggest_categorical("class_weight", [None, "balanced"])
+    bootstrap = trial.suggest_categorical("bootstrap", [True, False])
+
+    # 仅当 bootstrap=True 时启用 max_samples
+    if bootstrap:
+        max_samples = trial.suggest_float("max_samples", 0.5, 1.0)
+    else:
+        max_samples = None
+
+    model = RandomForestClassifier(
+        n_estimators=n_estimators,
+        max_depth=max_depth,
+        min_samples_split=min_samples_split,
+        min_samples_leaf=min_samples_leaf,
+        max_features=max_features,
+        class_weight=class_weight,
+        bootstrap=bootstrap,
+        max_samples=max_samples,
+        random_state=42,
+        n_jobs=-1
+    )
+
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    f1 = cross_val_score(model, X_train_balanced, y_train_balanced, cv=cv, scoring='f1').mean()
+    return f1
+
+# 启动调参
+study = optuna.create_study(direction='maximize')
+study.optimize(objective, n_trials=100, catch=(ValueError,))
+
+# 输出最优参数
+print("最优参数：")
+for k, v in study.best_params.items():
+    print(f"  {k}: {v}")
+
+# 最优模型
+best_rf = RandomForestClassifier(**study.best_params, random_state=42, n_jobs=-1)
+
+# 交叉验证
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+cv_scores = cross_val_score(best_rf, X_train_balanced, y_train_balanced, cv=cv, scoring='f1')
+print("\n交叉验证 F1 分数:", np.round(cv_scores, 3))
+print("F1 平均值: {:.3f} ± {:.3f}".format(np.mean(cv_scores), np.std(cv_scores)))
+
+# 测试集预测
+best_rf.fit(X_train_balanced, y_train_balanced)
+y_pred_rf = best_rf.predict(X_test)                      # 预测标签
+y_prob_rf = best_rf.predict_proba(X_test)[:, 1]           # 预测概率（正类）
+
+# 测试集评估
+print("\n测试集评估：")
+print("随机森林 - 准确率: {:.3f}".format(accuracy_score(y_test, y_pred_rf)))
+print("随机森林 - 精确率: {:.3f}".format(precision_score(y_test, y_pred_rf, zero_division=0)))
+print("随机森林 - 召回率: {:.3f}".format(recall_score(y_test, y_pred_rf)))
+print("随机森林 - F1分数: {:.3f}".format(f1_score(y_test, y_pred_rf)))
+print("随机森林 - AUC: {:.3f}".format(roc_auc_score(y_test, y_prob_rf)))
+
+import optuna
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import cross_val_score, StratifiedKFold
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+import numpy as np
+
+# 目标函数：返回交叉验证 F1 分数
+def objective(trial):
+    n_neighbors = trial.suggest_int("n_neighbors", 3, 15, step=2)
+    weights = trial.suggest_categorical("weights", ["uniform", "distance"])
+
+    model = KNeighborsClassifier(
+        n_neighbors=n_neighbors,
+        weights=weights
+        # 如果 sklearn>=1.3，可加 n_jobs=-1
+    )
+
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    score = cross_val_score(model, X_train_balanced, y_train_balanced, cv=cv, scoring="f1").mean()
+    return score
+
+# 超参数搜索
+study = optuna.create_study(direction="maximize")
+study.optimize(objective, n_trials=30)
+
+# 最优参数
+print("最优参数:", study.best_params)
+
+# 最优模型
+best_knn = KNeighborsClassifier(**study.best_params)
+best_knn.fit(X_train_balanced, y_train_balanced)
+
+# 交叉验证（F1 与 AUC）
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+cv_f1 = cross_val_score(best_knn, X_train_balanced, y_train_balanced, cv=cv, scoring='f1')
+cv_auc = cross_val_score(best_knn, X_train_balanced, y_train_balanced, cv=cv, scoring='roc_auc')
+
+print("CV F1:", np.round(cv_f1, 3))
+print("CV AUC:", np.round(cv_auc, 3))
+print("F1 平均±标准差: {:.3f} ± {:.3f}".format(cv_f1.mean(), cv_f1.std()))
+print("AUC 平均±标准差: {:.3f} ± {:.3f}".format(cv_auc.mean(), cv_auc.std()))
+
+# 测试集预测
+y_pred_knn = best_knn.predict(X_test)
+y_prob_knn = best_knn.predict_proba(X_test)[:, 1]  # 正类概率
+
+# 测试集评估
+print("\n测试集评估：")
+print("KNN - 准确率: {:.3f}".format(accuracy_score(y_test, y_pred_knn)))
+print("KNN - 精确率: {:.3f}".format(precision_score(y_test, y_pred_knn, zero_division=0)))
+print("KNN - 召回率: {:.3f}".format(recall_score(y_test, y_pred_knn)))
+print("KNN - F1分数: {:.3f}".format(f1_score(y_test, y_pred_knn)))
+print("KNN - AUC: {:.3f}".format(roc_auc_score(y_test, y_prob_knn)))
+
+import optuna
+from sklearn.svm import SVC
+from sklearn.model_selection import StratifiedKFold, cross_val_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+import numpy as np
+
+# 目标函数（最大化 F1 分数）
+def objective(trial):
+    C = trial.suggest_loguniform('C', 0.01, 100)
+    gamma = trial.suggest_loguniform('gamma', 0.001, 10)
+
+    model = SVC(kernel='rbf', probability=True, C=C, gamma=gamma, random_state=42)
+
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    score = cross_val_score(model, X_train_balanced, y_train_balanced, cv=cv, scoring='f1').mean()
+    return score
+
+# 启动 Optuna
+study = optuna.create_study(direction="maximize")
+study.optimize(objective, n_trials=30)
+
+# 最优参数
+print("SVM 贝叶斯优化最优参数:", study.best_params)
+
+# 训练最优模型
+svm_best = SVC(kernel='rbf', probability=True, **study.best_params, random_state=42)
+svm_best.fit(X_train_balanced, y_train_balanced)
+
+# 交叉验证评估：F1 + AUC
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+cv_f1 = cross_val_score(svm_best, X_train_balanced, y_train_balanced, cv=cv, scoring='f1')
+cv_auc = cross_val_score(svm_best, X_train_balanced, y_train_balanced, cv=cv, scoring='roc_auc')
+
+print("交叉验证 F1（训练集）:", np.round(cv_f1, 3))
+print("F1 平均值: {:.3f} ± {:.3f}".format(np.mean(cv_f1), np.std(cv_f1)))
+print("交叉验证 AUC（训练集）:", np.round(cv_auc, 3))
+print("AUC 平均值: {:.3f} ± {:.3f}".format(np.mean(cv_auc), np.std(cv_auc)))
+
+# 测试集预测
+y_pred_svm = svm_best.predict(X_test)
+y_prob_svm = svm_best.predict_proba(X_test)[:, 1]  # 统一用概率输出
+
+# 测试集评估
+print("\n测试集评估结果：")
+print("SVM - 准确率: {:.3f}".format(accuracy_score(y_test, y_pred_svm)))
+print("SVM - 精确率: {:.3f}".format(precision_score(y_test, y_pred_svm, zero_division=0)))
+print("SVM - 召回率: {:.3f}".format(recall_score(y_test, y_pred_svm)))
+print("SVM - F1分数: {:.3f}".format(f1_score(y_test, y_pred_svm)))
+print("SVM - AUC: {:.3f}".format(roc_auc_score(y_test, y_prob_svm)))
+
+import optuna
+from lightgbm import LGBMClassifier
+from sklearn.model_selection import StratifiedKFold, cross_val_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+import numpy as np
+
+# 定义目标函数（最大化 F1 分数）
+def objective(trial):
+    num_leaves = trial.suggest_int('num_leaves', 15, 63)
+    learning_rate = trial.suggest_float('learning_rate', 0.001, 0.1, log=True)
+    n_estimators = trial.suggest_int('n_estimators', 100, 500)
+
+    model = LGBMClassifier(
+        num_leaves=num_leaves,
+        learning_rate=learning_rate,
+        n_estimators=n_estimators,
+        random_state=42
+    )
+
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    score = cross_val_score(model, X_train_balanced, y_train_balanced, cv=cv, scoring='f1').mean()
+    return score
+
+# 启动贝叶斯优化
+study = optuna.create_study(direction='maximize')
+study.optimize(objective, n_trials=30)
+
+# 最优参数与模型训练
+print("LightGBM 贝叶斯最优参数:", study.best_params)
+
+lgbm_best = LGBMClassifier(**study.best_params, random_state=42)
+lgbm_best.fit(X_train_balanced, y_train_balanced)
+
+# 模型交叉验证评估（训练集）
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+cv_f1 = cross_val_score(lgbm_best, X_train_balanced, y_train_balanced, cv=cv, scoring='f1')
+cv_auc = cross_val_score(lgbm_best, X_train_balanced, y_train_balanced, cv=cv, scoring='roc_auc')
+
+print("交叉验证 F1 分数（训练集）:", np.round(cv_f1, 3))
+print("F1 平均值: {:.3f} ± {:.3f}".format(np.mean(cv_f1), np.std(cv_f1)))
+print("交叉验证 AUC 分数（训练集）:", np.round(cv_auc, 3))
+print("AUC 平均值: {:.3f} ± {:.3f}".format(np.mean(cv_auc), np.std(cv_auc)))
+
+# 测试集评估
+y_pred_lgbm = lgbm_best.predict(X_test)
+y_prob_lgbm = lgbm_best.predict_proba(X_test)[:, 1]  # 统一命名为 y_prob_lgbm
+
+print("\n测试集评估结果：")
+print("LightGBM - 准确率: {:.3f}".format(accuracy_score(y_test, y_pred_lgbm)))
+print("LightGBM - 精确率: {:.3f}".format(precision_score(y_test, y_pred_lgbm, zero_division=0)))
+print("LightGBM - 召回率: {:.3f}".format(recall_score(y_test, y_pred_lgbm)))
+print("LightGBM - F1分数: {:.3f}".format(f1_score(y_test, y_pred_lgbm)))
+print("LightGBM - AUC: {:.3f}".format(roc_auc_score(y_test, y_prob_lgbm)))
+
+import optuna
+from xgboost import XGBClassifier
+from sklearn.model_selection import StratifiedKFold, cross_val_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+import numpy as np
+
+# 定义贝叶斯优化目标函数（最大化 F1 分数）
+def objective(trial):
+    params = {
+        'max_depth': trial.suggest_int('max_depth', 3, 10),
+        'learning_rate': trial.suggest_float('learning_rate', 0.01, 0.3, log=True),
+        'n_estimators': trial.suggest_int('n_estimators', 100, 500),
+        'use_label_encoder': False,
+        'eval_metric': 'logloss',
+        'random_state': 42
+    }
+    model = XGBClassifier(**params)
+
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    score = cross_val_score(model, X_train_balanced, y_train_balanced, cv=cv, scoring='f1').mean()
+    return score
+
+# 启动贝叶斯优化
+study = optuna.create_study(direction='maximize')
+study.optimize(objective, n_trials=30)
+
+# 最优参数 + 训练最终模型
+print("XGBoost 贝叶斯最优参数:", study.best_params)
+
+# 合并固定参数
+final_params = {**study.best_params, 'use_label_encoder': False, 'eval_metric': 'logloss', 'random_state': 42}
+xgb_best = XGBClassifier(**final_params)
+xgb_best.fit(X_train_balanced, y_train_balanced)
+
+# 训练集交叉验证评估
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+cv_f1  = cross_val_score(xgb_best, X_train_balanced, y_train_balanced, cv=cv, scoring='f1')
+cv_auc = cross_val_score(xgb_best, X_train_balanced, y_train_balanced, cv=cv, scoring='roc_auc')
+
+print("交叉验证 F1（训练集）:", np.round(cv_f1, 3))
+print("F1 平均±标准差: {:.3f} ± {:.3f}".format(cv_f1.mean(), cv_f1.std()))
+print("交叉验证 AUC（训练集）:", np.round(cv_auc, 3))
+print("AUC 平均±标准差: {:.3f} ± {:.3f}".format(cv_auc.mean(), cv_auc.std()))
+
+# 测试集评估
+y_pred_xgb = xgb_best.predict(X_test)
+y_prob_xgb = xgb_best.predict_proba(X_test)[:, 1]  # 统一命名
+
+print("\n测试集评估结果：")
+print("XGBoost - 准确率: {:.3f}".format(accuracy_score(y_test, y_pred_xgb)))
+print("XGBoost - 精确率: {:.3f}".format(precision_score(y_test, y_pred_xgb, zero_division=0)))
+print("XGBoost - 召回率: {:.3f}".format(recall_score(y_test, y_pred_xgb)))
+print("XGBoost - F1分数: {:.3f}".format(f1_score(y_test, y_pred_xgb)))
+print("XGBoost - AUC: {:.3f}".format(roc_auc_score(y_test, y_prob_xgb)))
+
+import optuna
+from xgboost import XGBClassifier
+from sklearn.model_selection import StratifiedKFold, cross_val_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+import numpy as np
+
+# 定义贝叶斯优化目标函数（最大化 F1 分数）
+def objective(trial):
+    params = {
+        'max_depth': trial.suggest_int('max_depth', 3, 10),
+        'learning_rate': trial.suggest_float('learning_rate', 0.01, 0.3, log=True),
+        'n_estimators': trial.suggest_int('n_estimators', 100, 500),
+        'use_label_encoder': False,
+        'eval_metric': 'logloss',
+        'random_state': 42
+    }
+    model = XGBClassifier(**params)
+
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    score = cross_val_score(model, X_train_balanced, y_train_balanced, cv=cv, scoring='f1').mean()
+    return score
+
+# 启动贝叶斯优化
+study = optuna.create_study(direction='maximize')
+study.optimize(objective, n_trials=30)
+
+# 最优参数 + 训练最终模型
+print("XGBoost 贝叶斯最优参数:", study.best_params)
+
+# 合并固定参数
+final_params = {**study.best_params, 'use_label_encoder': False, 'eval_metric': 'logloss', 'random_state': 42}
+xgb_best = XGBClassifier(**final_params)
+xgb_best.fit(X_train_balanced, y_train_balanced)
+
+# 训练集交叉验证评估
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+cv_f1  = cross_val_score(xgb_best, X_train_balanced, y_train_balanced, cv=cv, scoring='f1')
+cv_auc = cross_val_score(xgb_best, X_train_balanced, y_train_balanced, cv=cv, scoring='roc_auc')
+
+print("交叉验证 F1（训练集）:", np.round(cv_f1, 3))
+print("F1 平均±标准差: {:.3f} ± {:.3f}".format(cv_f1.mean(), cv_f1.std()))
+print("交叉验证 AUC（训练集）:", np.round(cv_auc, 3))
+print("AUC 平均±标准差: {:.3f} ± {:.3f}".format(cv_auc.mean(), cv_auc.std()))
+
+# 测试集评估
+y_pred_xgb = xgb_best.predict(X_test)
+y_prob_xgb = xgb_best.predict_proba(X_test)[:, 1]  # 统一命名
+
+print("\n测试集评估结果：")
+print("XGBoost - 准确率: {:.3f}".format(accuracy_score(y_test, y_pred_xgb)))
+print("XGBoost - 精确率: {:.3f}".format(precision_score(y_test, y_pred_xgb, zero_division=0)))
+print("XGBoost - 召回率: {:.3f}".format(recall_score(y_test, y_pred_xgb)))
+print("XGBoost - F1分数: {:.3f}".format(f1_score(y_test, y_pred_xgb)))
+print("XGBoost - AUC: {:.3f}".format(roc_auc_score(y_test, y_prob_xgb)))
+
+import optuna
+from catboost import CatBoostClassifier
+from sklearn.model_selection import StratifiedKFold, cross_val_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+import numpy as np
+
+# 目标函数（最大化 F1）
+def objective(trial):
+    params = {
+        'depth': trial.suggest_int('depth', 3, 10),
+        'learning_rate': trial.suggest_float('learning_rate', 0.01, 0.3, log=True),
+        'iterations': trial.suggest_int('iterations', 100, 500),
+        'loss_function': 'Logloss',
+        'verbose': 0,
+        'random_state': 42,
+        'thread_count': 1
+    }
+    model = CatBoostClassifier(**params)
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    return cross_val_score(model, X_train_balanced, y_train_balanced, cv=cv, scoring='f1', n_jobs=-1).mean()
+
+# 超参搜索
+study = optuna.create_study(direction='maximize')
+study.optimize(objective, n_trials=30)
+
+# 训练最优模型
+print("CatBoost 最优参数:", study.best_params)
+final_params = {**study.best_params, 'loss_function': 'Logloss', 'verbose': 0, 'random_state': 42, 'thread_count': -1}
+cat_best = CatBoostClassifier(**final_params)
+cat_best.fit(X_train_balanced, y_train_balanced)
+
+# 交叉验证评估（F1 + AUC）
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+cv_f1  = cross_val_score(cat_best, X_train_balanced, y_train_balanced, cv=cv, scoring='f1', n_jobs=-1)
+cv_auc = cross_val_score(cat_best, X_train_balanced, y_train_balanced, cv=cv, scoring='roc_auc', n_jobs=-1)
+
+print("CV F1:", np.round(cv_f1, 3))
+print("CV F1 mean±std: {:.3f} ± {:.3f}".format(cv_f1.mean(), cv_f1.std()))
+print("CV AUC:", np.round(cv_auc, 3))
+print("CV AUC mean±std: {:.3f} ± {:.3f}".format(cv_auc.mean(), cv_auc.std()))
+
+# 测试集评估
+y_pred_cat = cat_best.predict(X_test)
+y_prob_cat = cat_best.predict_proba(X_test)[:, 1]
+
+print("\n测试集评估：")
+print("CatBoost - 准确率: {:.3f}".format(accuracy_score(y_test, y_pred_cat)))
+print("CatBoost - 精确率: {:.3f}".format(precision_score(y_test, y_pred_cat, zero_division=0)))
+print("CatBoost - 召回率: {:.3f}".format(recall_score(y_test, y_pred_cat)))
+print("CatBoost - F1分数: {:.3f}".format(f1_score(y_test, y_pred_cat)))
+print("CatBoost - AUC: {:.3f}".format(roc_auc_score(y_test, y_prob_cat)))
+
+# ================= 保存（下次运行直接执行） =================
+import os, joblib, numpy as np, sklearn, catboost, json
+os.makedirs(SAVE_DIR if 'SAVE_DIR' in globals() else 'figures1', exist_ok=True)
+ART_DIR = SAVE_DIR if 'SAVE_DIR' in globals() else 'figures1'
+
+# 存模型
+joblib.dump(cat_best, os.path.join(ART_DIR, "catboost_model.joblib"))
+
+# 存测试集
+np.savez_compressed(os.path.join(ART_DIR, "catboost_testset.npz"),
+                    X_test=X_test, y_test=y_test)
+
+# 存环境信息，便于将来复现核对
+meta = {
+    "best_params": final_params,
+    "versions": {"sklearn": sklearn.__version__, "catboost": catboost.__version__}
+}
+with open(os.path.join(ART_DIR, "catboost_meta.json"), "w", encoding="utf-8") as f:
+    json.dump(meta, f, ensure_ascii=False, indent=2)
+
+print("已保存：catboost_model.joblib, catboost_testset.npz, catboost_meta.json")
+
+# ================= 复现 =================
+import os, joblib, numpy as np
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+
+ART_DIR = SAVE_DIR if 'SAVE_DIR' in globals() else 'figures1'
+model_path   = os.path.join(ART_DIR, "catboost_model.joblib")
+testset_path = os.path.join(ART_DIR, "catboost_testset.npz")
+
+if not (os.path.exists(model_path) and os.path.exists(testset_path)):
+    raise FileNotFoundError(
+        f"未找到已保存模型或测试集：\n - {model_path}\n - {testset_path}\n"
+        "请先运行训练并保存模型的单元。"
+    )
+
+# 载入模型与测试集
+cat_loaded = joblib.load(model_path)          
+data = np.load(testset_path)
+X_test_loaded, y_test_loaded = data["X_test"], data["y_test"]
+
+# 指标复现
+y_pred = cat_loaded.predict(X_test_loaded)
+y_prob = cat_loaded.predict_proba(X_test_loaded)[:, 1]
+
+print("\n[Reproduce]")
+print("Accuracy:  {:.3f}".format(accuracy_score(y_test_loaded, y_pred)))
+print("Precision: {:.3f}".format(precision_score(y_test_loaded, y_pred, zero_division=0)))
+print("Recall:    {:.3f}".format(recall_score(y_test_loaded, y_pred)))
+print("F1:        {:.3f}".format(f1_score(y_test_loaded, y_pred)))
+print("AUC:       {:.3f}".format(roc_auc_score(y_test_loaded, y_prob)))
+
+# 兼容旧变量名与后续单元
+cat_best   = cat_loaded                      
+cat_params = getattr(cat_loaded, "get_params", lambda: {})()
+y_pred_cat = y_pred
+y_prob_cat = y_prob
+
+# ===== 汇总两套 CatBoost 指标并画图（放在你现有 CatBoost 之后）=====
+import numpy as np, pandas as pd, matplotlib.pyplot as plt, os
+
+SAVE_DIR = "figures1"; os.makedirs(SAVE_DIR, exist_ok=True)
+order = ["Accuracy","Precision","Recall","F1 Score","AUC"]
+
+metrics_with_cross = {
+    "Accuracy":  accuracy_score(y_test, y_pred_cat),
+    "Precision": precision_score(y_test, y_pred_cat, zero_division=0),
+    "Recall":    recall_score(y_test, y_pred_cat),
+    "F1 Score":  f1_score(y_test, y_pred_cat),
+    "AUC":       roc_auc_score(y_test, y_prob_cat)
+}
+
+cmp_df = pd.DataFrame([metrics_no_cross, metrics_with_cross],
+                      index=["No-Cross","With-Cross"])[order]
+print(cmp_df)
+cmp_df.to_csv(os.path.join(SAVE_DIR, "catboost_cross_vs_nocross.csv"))
+
+# 柱状图
+x = np.arange(len(order)); w = 0.36
+vals_no   = cmp_df.loc["No-Cross",   order].values
+vals_with = cmp_df.loc["With-Cross", order].values
+
+plt.figure(figsize=(8.5, 5.2))
+plt.bar(x - w/2, vals_no,   width=w, label='No-Cross')
+plt.bar(x + w/2, vals_with, width=w, label='With-Cross')
+plt.xticks(x, order); plt.ylabel("Score"); plt.ylim(0, 1.05)
+plt.title("CatBoost：无交互特征 vs 含交互特征")
+for i, v in enumerate(vals_no):   plt.text(i - w/2, v + 0.01, f"{v:.3f}", ha='center', va='bottom', fontsize=9)
+for i, v in enumerate(vals_with): plt.text(i + w/2, v + 0.01, f"{v:.3f}", ha='center', va='bottom', fontsize=9)
+plt.legend(); plt.grid(axis='y', linestyle='--', alpha=0.35)
+outp = os.path.join(SAVE_DIR, "catboost_cross_vs_nocross.png")
+plt.tight_layout(); plt.savefig(outp, dpi=300, bbox_inches='tight'); plt.show()
+print("对比图已保存：", outp)
+
+import optuna
+from sklearn.neural_network import MLPClassifier
+from sklearn.model_selection import cross_val_score, StratifiedKFold
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+import numpy as np
+
+# 目标函数（最大化 F1）
+def objective(trial):
+    hidden_layer_sizes = trial.suggest_categorical(
+        'hidden_layer_sizes', [(100,), (100, 50), (128, 64), (256, 128)]
+    )
+    alpha = trial.suggest_float('alpha', 1e-5, 1e-1, log=True)
+
+    model = MLPClassifier(
+        hidden_layer_sizes=hidden_layer_sizes,
+        alpha=alpha,
+        max_iter=500,
+        early_stopping=True,
+        solver='adam',
+        random_state=42
+    )
+
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    score = cross_val_score(model, X_train_balanced, y_train_balanced, cv=cv, scoring='f1', n_jobs=-1).mean()
+    return score
+
+# Optuna 搜索
+study = optuna.create_study(direction='maximize')
+study.optimize(objective, n_trials=30)
+
+# 最优参数与训练
+print("MLP 最优参数:", study.best_params)
+mlp_best = MLPClassifier(
+    hidden_layer_sizes=study.best_params['hidden_layer_sizes'],
+    alpha=study.best_params['alpha'],
+    max_iter=500,
+    early_stopping=True,
+    solver='adam',
+    random_state=42
+)
+mlp_best.fit(X_train_balanced, y_train_balanced)
+
+# 交叉验证评估（F1 + AUC）
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+cv_f1  = cross_val_score(mlp_best, X_train_balanced, y_train_balanced, cv=cv, scoring='f1', n_jobs=-1)
+cv_auc = cross_val_score(mlp_best, X_train_balanced, y_train_balanced, cv=cv, scoring='roc_auc', n_jobs=-1)
+
+print("交叉验证 F1:", np.round(cv_f1, 3))
+print("F1 平均±标准差: {:.3f} ± {:.3f}".format(np.mean(cv_f1), np.std(cv_f1)))
+print("交叉验证 AUC:", np.round(cv_auc, 3))
+print("AUC 平均±标准差: {:.3f} ± {:.3f}".format(np.mean(cv_auc), np.std(cv_auc)))
+
+# 测试集评估
+y_pred_mlp = mlp_best.predict(X_test)
+y_prob_mlp = mlp_best.predict_proba(X_test)
+if y_prob_mlp.shape[1] == 2:
+    y_prob_mlp = y_prob_mlp[:, 1]
+else:
+    y_prob_mlp = np.zeros(len(y_prob_mlp))  # 避免AUC报错
+
+print("\n测试集评估：")
+print("MLP - 准确率: {:.3f}".format(accuracy_score(y_test, y_pred_mlp)))
+print("MLP - 精确率: {:.3f}".format(precision_score(y_test, y_pred_mlp, zero_division=0)))
+print("MLP - 召回率: {:.3f}".format(recall_score(y_test, y_pred_mlp)))
+print("MLP - F1分数: {:.3f}".format(f1_score(y_test, y_pred_mlp)))
+print("MLP - AUC: {:.3f}".format(roc_auc_score(y_test, y_prob_mlp)))
+
+# ====== Stacking（XGB + CatBoost + RF + SVM） ======
+from sklearn.ensemble import StackingClassifier, RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from xgboost import XGBClassifier
+from catboost import CatBoostClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, roc_curve
+import matplotlib.pyplot as plt
+
+# ========= 取各模型最优参数 =========
+rf_params  = best_rf.get_params()
+svm_params = svm_best.get_params()
+xgb_params = xgb_best.get_params()
+cat_params = cat_best.get_params()
+
+svm_params['probability'] = True
+xgb_params.setdefault('use_label_encoder', False)
+xgb_params.setdefault('eval_metric', 'logloss')
+xgb_params.setdefault('random_state', 42)
+
+cat_params.update({
+    'verbose': 0,
+    'allow_writing_files': False,
+    'thread_count': 1
+})
+
+# ========= 基学习器 =========
+base_estimators = [
+    ('xgb', XGBClassifier(**xgb_params)),
+    ('cat', CatBoostClassifier(**cat_params)),
+    ('rf',  RandomForestClassifier(**rf_params)),
+    ('svm', SVC(**svm_params)),
+]
+
+# ========= 元学习器 =========
+meta_learner = LogisticRegression(max_iter=200, random_state=42)
+
+# ========= 构建 & 训练 Stacking =========
+stacking_clf = StackingClassifier(
+    estimators=base_estimators,
+    final_estimator=meta_learner,
+    cv=5,
+    n_jobs=1,      
+    stack_method='auto'
+)
+
+stacking_clf.fit(X_train_balanced, y_train_balanced)
+
+# ========= 测试集评估 =========
+y_pred_stacking = stacking_clf.predict(X_test)
+y_prob_stacking = stacking_clf.predict_proba(X_test)[:, 1]
+
+print("\n[Stacking 测试集评估]")
+print("Accuracy : {:.3f}".format(accuracy_score(y_test, y_pred_stacking)))
+print("Precision: {:.3f}".format(precision_score(y_test, y_pred_stacking, zero_division=0)))
+print("Recall   : {:.3f}".format(recall_score(y_test, y_pred_stacking)))
+print("F1 Score : {:.3f}".format(f1_score(y_test, y_pred_stacking)))
+print("AUC      : {:.3f}".format(roc_auc_score(y_test, y_prob_stacking)))
+
+from sklearn.ensemble import VotingClassifier, RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
+from xgboost import XGBClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.model_selection import cross_val_score, StratifiedKFold
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, confusion_matrix
+import numpy as np
+
+# ===== 转为 numpy 数组，保证行数一致，避免索引错位 =====
+X_train_balanced = np.array(X_train_balanced)
+y_train_balanced = np.array(y_train_balanced)
+X_test = np.array(X_test)
+y_test = np.array(y_test)
+
+# ===== 用 best_* 的参数重建未拟合基学习器 =====
+rf_params  = best_rf.get_params()
+svm_params = svm_best.get_params()
+knn_params = best_knn.get_params()
+xgb_params = xgb_best.get_params()
+mlp_params = mlp_best.get_params()
+
+# SVC 开启概率输出
+svm_params['probability'] = True
+# XGB 兜底参数
+xgb_params.setdefault('eval_metric', 'logloss')
+xgb_params.setdefault('use_label_encoder', False)
+xgb_params.setdefault('random_state', 42)
+
+# 投票模型的基学习器
+voting_estimators = [
+    ('rf',  RandomForestClassifier(**rf_params)),
+    ('svm', SVC(**svm_params)),
+    ('knn', KNeighborsClassifier(**knn_params)),
+    ('xgb', XGBClassifier(**xgb_params)),
+    ('mlp', MLPClassifier(**mlp_params)),
+]
+
+# ===== 构建 VotingClassifier（软投票） =====
+voting_clf = VotingClassifier(
+    estimators=voting_estimators,
+    voting='soft',
+    n_jobs=-1
+)
+
+# ===== 交叉验证（F1 + AUC） =====
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+cv_f1  = cross_val_score(voting_clf, X_train_balanced, y_train_balanced, cv=cv, scoring='f1',      n_jobs=-1)
+cv_auc = cross_val_score(voting_clf, X_train_balanced, y_train_balanced, cv=cv, scoring='roc_auc', n_jobs=-1)
+
+print("CV F1:",  np.round(cv_f1, 3),  "| mean±std:", f"{cv_f1.mean():.3f} ± {cv_f1.std():.3f}")
+print("CV AUC:", np.round(cv_auc, 3), "| mean±std:", f"{cv_auc.mean():.3f} ± {cv_auc.std():.3f}")
+
+# ===== 拟合模型并预测 =====
+voting_clf.fit(X_train_balanced, y_train_balanced)
+y_pred_voting = voting_clf.predict(X_test)
+
+# ===== AUC 防呆处理 =====
+y_prob_voting = voting_clf.predict_proba(X_test)
+if y_prob_voting.shape[1] == 2:
+    y_prob_voting = y_prob_voting[:, 1]
+else:
+    y_prob_voting = np.zeros(len(y_pred_voting))
+
+# ===== 保证形状一致 =====
+assert len(y_pred_voting) == len(y_test), "预测结果与测试集样本数不一致"
+
+# ===== 测试集评估 =====
+print("\n测试集评估：")
+print("Voting - 准确率: {:.3f}".format(accuracy_score(y_test, y_pred_voting)))
+print("Voting - 精确率: {:.3f}".format(precision_score(y_test, y_pred_voting, zero_division=0)))
+print("Voting - 召回率: {:.3f}".format(recall_score(y_test, y_pred_voting)))
+print("Voting - F1分数: {:.3f}".format(f1_score(y_test, y_pred_voting)))
+print("Voting - AUC: {:.3f}".format(roc_auc_score(y_test, y_prob_voting)))
+
+import pandas as pd
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+
+# 模型名称
+models = ["DecisionTree", "RandomForest", "KNN", "SVM", "LightGBM", "XGBoost", "CatBoost", "DNN(MLP)", "Stacking", "Voting"]
+
+# 每个模型的预测标签（用于分类指标）
+y_preds = [
+    y_pred_dt,        # 决策树
+    y_pred_rf,        # 随机森林
+    y_pred_knn,       # KNN
+    y_pred_svm,       # SVM
+    y_pred_lgbm,      # LightGBM
+    y_pred_xgb,       # XGBoost
+    y_pred_cat,       # CatBoost
+    y_pred_mlp,       # MLP
+    y_pred_stacking,  # Stacking
+    y_pred_voting     # Voting
+]
+
+# 每个模型的预测概率（用于AUC计算）
+y_probs = {
+    "DecisionTree": best_dt.predict_proba(X_test)[:, 1],
+    "RandomForest": best_rf.predict_proba(X_test)[:, 1],
+    "KNN": best_knn.predict_proba(X_test)[:, 1],
+    "SVM": svm_best.predict_proba(X_test)[:, 1],
+    "LightGBM": lgbm_best.predict_proba(X_test)[:, 1],
+    "XGBoost": xgb_best.predict_proba(X_test)[:, 1],
+    "CatBoost": cat_best.predict_proba(X_test)[:, 1],
+    "DNN(MLP)": mlp_best.predict_proba(X_test)[:, 1],
+    "Stacking": stacking_clf.predict_proba(X_test)[:, 1] if stacking_clf.predict_proba(X_test).shape[1] == 2 else np.zeros(len(y_test)),
+    "Voting": voting_clf.predict_proba(X_test)[:, 1] if voting_clf.predict_proba(X_test).shape[1] == 2 else np.zeros(len(y_test))
+}
+
+# 指标记录字典
+metrics = {
+    "Model": [],
+    "Accuracy": [],
+    "Precision": [],
+    "Recall": [],
+    "F1 Score": [],
+    "AUC": []
+}
+
+# 遍历填充各项指标
+for model_name, y_pred in zip(models, y_preds):
+    metrics["Model"].append(model_name)
+    metrics["Accuracy"].append(accuracy_score(y_test, y_pred))
+    metrics["Precision"].append(precision_score(y_test, y_pred, zero_division=0))
+    metrics["Recall"].append(recall_score(y_test, y_pred))
+    metrics["F1 Score"].append(f1_score(y_test, y_pred))
+    metrics["AUC"].append(roc_auc_score(y_test, y_probs[model_name]))  # AUC加入此处
+
+# 转换为DataFrame并排序输出
+result_df = pd.DataFrame(metrics).sort_values("F1 Score", ascending=False)
+display(result_df)
+
+from sklearn.metrics import confusion_matrix, f1_score
+import seaborn as sns
+import matplotlib.pyplot as plt
+import os
+
+# 模型名称和预测结果
+model_preds = {
+    "DecisionTree": y_pred_dt,
+    "RandomForest": y_pred_rf,
+    "KNN": y_pred_knn,
+    "SVM": y_pred_svm,
+    "LightGBM": y_pred_lgbm,
+    "XGBoost": y_pred_xgb,
+    "CatBoost": y_pred_cat,
+    "DNN(MLP)": y_pred_mlp,
+    "Stacking": y_pred_stacking,
+    "Voting": y_pred_voting
+}
+
+# 自动找出 F1 最优模型
+f1_scores = {name: f1_score(y_test, pred) for name, pred in model_preds.items()}
+best_model_name = max(f1_scores, key=f1_scores.get)
+best_pred = model_preds[best_model_name]
+
+# 绘制并保存混淆矩阵
+cm = confusion_matrix(y_test, best_pred)
+plt.figure(figsize=(4, 3))
+sns.heatmap(cm, annot=True, cmap='Blues', fmt='d',
+            xticklabels=[0, 1], yticklabels=[0, 1])
+plt.xlabel('预测类别')
+plt.ylabel('真实类别')
+plt.title(f'{best_model_name} - 混淆矩阵（二分类）')
+plt.tight_layout()
+
+os.makedirs(SAVE_DIR, exist_ok=True)
+save_path = os.path.join(SAVE_DIR, f"confusion_matrix_{best_model_name}.png")
+plt.savefig(save_path, dpi=300, bbox_inches='tight')
+plt.show()
+
+print(f"混淆矩阵已保存到: {save_path}")
+
+import matplotlib.pyplot as plt
+from sklearn.metrics import roc_curve, roc_auc_score
+
+# 模型名称和预测结果
+models = ["DecisionTree", "RandomForest", "KNN", "SVM", "LightGBM", "XGBoost", "CatBoost", "DNN (MLP)", "Stacking", "Voting"]
+y_preds = [
+    y_pred_dt,        # 决策树
+    y_pred_rf,        # 随机森林
+    y_pred_knn,       # KNN
+    y_pred_svm,       # SVM
+    y_pred_lgbm,      # LightGBM
+    y_pred_xgb,       # XGBoost
+    y_pred_cat,       # CatBoost
+    y_pred_mlp,       # MLP
+    y_pred_stacking,  # Stacking
+    y_pred_voting     # Voting
+]
+
+# 每个模型的预测概率（用于AUC计算）
+y_probs = {
+    "DecisionTree": best_dt.predict_proba(X_test)[:, 1],
+    "RandomForest": best_rf.predict_proba(X_test)[:, 1],
+    "KNN": best_knn.predict_proba(X_test)[:, 1],
+    "SVM": svm_best.predict_proba(X_test)[:, 1],
+    "LightGBM": lgbm_best.predict_proba(X_test)[:, 1],
+    "XGBoost": xgb_best.predict_proba(X_test)[:, 1],
+    "CatBoost": cat_best.predict_proba(X_test)[:, 1],
+    "DNN (MLP)": mlp_best.predict_proba(X_test)[:, 1],
+    "Stacking": stacking_clf.predict_proba(X_test)[:, 1],
+    "Voting": voting_clf.predict_proba(X_test)[:, 1]
+}
+
+# 计算 AUC
+aucs = {model: roc_auc_score(y_test, y_probs[model]) for model in models}
+
+# 排序 AUC 值
+sorted_models = sorted(aucs.items(), key=lambda x: x[1], reverse=True)  # [(name, auc), ...]
+
+# 绘制 ROC 曲线
+plt.figure(figsize=(8, 6))
+cmap = plt.cm.get_cmap('tab10', len(sorted_models))
+
+# 绘制每个模型的 ROC 曲线
+for i, (model, auc_score) in enumerate(sorted_models):
+    y_prob = y_probs[model]
+    fpr, tpr, _ = roc_curve(y_test, y_prob)
+    plt.plot(fpr, tpr, label=f"{model} (AUC = {auc_score:.3f})", color=cmap(i), lw=2)
+
+# 参考对角线
+plt.plot([0, 1], [0, 1], 'k--', lw=1)
+
+# 美化图表
+plt.xlabel("False Positive Rate", fontsize=12)
+plt.ylabel("True Positive Rate", fontsize=12)
+plt.title("全模型 ROC", fontsize=14)
+plt.legend(loc='lower right', fontsize=10)
+plt.grid(True)
+plt.tight_layout()
+
+# 保存图像
+save_path = 'models_roc_curve_sorted_auc.png'
+plt.savefig(save_path, dpi=300)
+
+# 显示图像
+plt.show()
+
+# 提示保存成功
+print(f"图像已保存至: {save_path}")
+
+# =================== 特征重要性 / SHAP 分析 ===================
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import shap
+
+plt.rcParams['font.sans-serif'] = ['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
+
+# 选出最佳模型（按 F1 排序）
+best_model_name = result_df.sort_values("F1 Score", ascending=False).iloc[0]['Model']
+print(f"使用最佳模型进行特征重要性/SHAP 分析：{best_model_name}")
+
+# 直接从已 fit 的 preprocessor 获取真实列名（与 X_test 一一对应）
+# 数值列名（传入 ColumnTransformer 的那组）
+num_names = list(preprocessor.transformers_[0][2])
+
+# 类别列名（OneHot 之前的原始列）与 OHE 展开后的列名
+cat_cols  = list(preprocessor.transformers_[1][2])
+ohe       = preprocessor.named_transformers_['cat']  # 已 fit 的 OneHotEncoder
+cat_names = list(ohe.get_feature_names_out(cat_cols))
+
+feature_names = num_names + cat_names
+X_for_shap   = X_test
+
+# 一致性检查
+assert X_for_shap.shape[1] == len(feature_names), \
+    f"列数不一致：X_for_shap={X_for_shap.shape[1]} vs feature_names={len(feature_names)}；请确认使用的是同一个 preprocessor 与特征集。"
+
+# 模型名称到实例映射（确保这些变量在上文已训练好）
+model_map = {
+    "DecisionTree": best_dt,
+    "RandomForest": best_rf,
+    "KNN": best_knn,
+    "SVM": svm_best,
+    "LightGBM": lgbm_best,
+    "XGBoost": xgb_best,
+    "CatBoost": cat_best,
+    "DNN(MLP)": mlp_best,
+    "Stacking": stacking_clf,
+    "Voting": voting_clf
+}
+best_model = model_map[best_model_name]
+
+# 若模型提供 feature_importances_ 且长度匹配，则直接画 Top10；否则转 SHAP
+use_builtin_importance = hasattr(best_model, "feature_importances_") and \
+                         (getattr(best_model, "feature_importances_") is not None) and \
+                         (len(best_model.feature_importances_) == X_for_shap.shape[1])
+
+if use_builtin_importance:
+    importances = np.asarray(best_model.feature_importances_)
+    idx = np.argsort(importances)[::-1][:10]
+
+    print("特征重要性（Top 10）:")
+    for i in idx:
+        print(f"{feature_names[i]}: {importances[i]:.4f}")
+
+    plt.figure(figsize=(6, 4))
+    sns.barplot(x=importances[idx], y=np.array(feature_names)[idx])
+    plt.xlabel("Importance Score")
+    plt.ylabel("Feature")
+    plt.title(f"{best_model_name} - Top10 Feature Importance")
+    plt.tight_layout()
+    plt.show()
+
+else:
+    #  SHAP：树模型优先 TreeExplainer，其他用通用 Explainer
+    is_tree = best_model_name in ["DecisionTree", "RandomForest", "XGBoost", "LightGBM", "CatBoost"]
+    if is_tree:
+        explainer = shap.TreeExplainer(best_model)
+        shap_values = explainer.shap_values(X_for_shap)
+        # 二分类：取正类
+        sv = shap_values[1] if isinstance(shap_values, list) and len(shap_values) == 2 else shap_values
+    else:
+        explainer = shap.Explainer(best_model, X_for_shap)
+        sv = explainer(X_for_shap)
+
+    # SHAP summary（散点）
+    shap.summary_plot(
+        sv, X_for_shap, feature_names=feature_names,
+        plot_size=(10, 6), show=True
+    )
+    # SHAP summary（条形）
+    shap.summary_plot(
+        sv, X_for_shap, feature_names=feature_names,
+        plot_type="bar", plot_size=(10, 6), show=True
+    )
+
+# ========= 基于“最佳模型”的 SHAP：原始特征 vs 原始+交互=========
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import shap
+from catboost import Pool
+import os
+
+plt.rcParams['font.sans-serif'] = ['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
+
+SAVE_DIR = "figures1"
+os.makedirs(SAVE_DIR, exist_ok=True)
+
+# 选 F1 最优模型
+best_model_name = result_df.sort_values("F1 Score", ascending=False).iloc[0]["Model"]
+model_map = {
+    "DecisionTree": best_dt,  "RandomForest": best_rf, "KNN": best_knn, "SVM": svm_best,
+    "LightGBM": lgbm_best,    "XGBoost": xgb_best,     "CatBoost": cat_best,
+    "DNN(MLP)": mlp_best,     "Stacking": stacking_clf, "Voting": voting_clf
+}
+best_model = model_map[best_model_name]
+print("最佳模型:", best_model_name)
+
+
+X_full = preprocessor.transform(X_test_raw)
+all_names = preprocessor.get_feature_names_out()
+assert X_full.shape[1] == len(all_names), "preprocessor 输出列数与列名不一致！"
+
+# 特征清单
+base_cats = ["Type", "MAT", "TS", "CT", "TM", "Shape"]
+base_nums = ["Size", "Zeta Potential"]
+
+cross_num_feats   = ["Size_x_Zeta", "Size_x_TS_Passive", "Zeta_x_Shape_Spherical"]
+cross_categ_feats = ["TM_CT", "Shape_Type", "MAT_TS"] 
+
+num_idx_map = { n.split("num__",1)[1]: i
+                for i, n in enumerate(all_names) if n.startswith("num__") }
+def cat_ohe_indices(base):
+    return [i for i, n in enumerate(all_names) if n.startswith(f"cat__{base}_")]
+
+# 4) 计算 SHAP
+def compute_sv(model, model_name, X):
+    X_in = X.toarray() if hasattr(X, "toarray") else X
+    if model_name == "CatBoost":
+        e = shap.TreeExplainer(model)
+        s = e.shap_values(Pool(X_in))
+        s = s[1] if isinstance(s, list) and len(s) == 2 else s
+        if s.shape[1] == X_in.shape[1] + 1:
+            s = s[:, :-1]
+        return s
+    elif model_name in ["RandomForest", "XGBoost", "LightGBM", "DecisionTree"]:
+        e = shap.TreeExplainer(model)
+        s = e.shap_values(X_in)
+        s = s[1] if isinstance(s, list) and len(s) == 2 else s
+        if s.shape[1] == X_in.shape[1] + 1:
+            s = s[:, :-1]
+        return s
+    else:
+        e = shap.Explainer(model, X_in)
+        s = e(X_in)
+        return s.values if hasattr(s, "values") else s
+
+sv_full = compute_sv(best_model, best_model_name, X_full)  
+
+# 构建SHAP矩阵
+def build_agg(include_cross_num: bool, include_cross_categ: bool):
+    # 需要展示的类别/数值清单
+    cats = base_cats + (cross_categ_feats if include_cross_categ else [])
+    nums = base_nums + (cross_num_feats if include_cross_num else [])
+    final_feats = cats + nums
+
+    agg = np.zeros((sv_full.shape[0], len(final_feats)))
+    col = 0
+
+    # 类别（含交互类别）：把对应 OHE 列的 SHAP 相加
+    for base in cats:
+        idxs = cat_ohe_indices(base)
+        if len(idxs) == 0:
+            print(f"警告：在 preprocessor 输出中找不到类别字段：{base}（已置 0）")
+            agg[:, col] = 0.0
+        else:
+            agg[:, col] = sv_full[:, idxs].sum(axis=1)
+        col += 1
+
+    # 数值/交互数值：直接取对应 num__ 列
+    for num_name in nums:
+        if num_name in num_idx_map:
+            agg[:, col] = sv_full[:, num_idx_map[num_name]]
+        else:
+            print(f"警告：在 preprocessor 数值列中未找到：{num_name}（已置 0）")
+            agg[:, col] = 0.0
+        col += 1
+
+    return final_feats, agg
+
+# 画图
+def draw_plots(final_feats, agg_sv, tag):
+    mean_abs = np.abs(agg_sv).mean(axis=0)
+    order = np.argsort(mean_abs)[::-1]
+    names_ord = [final_feats[i] for i in order]
+    sv_ord    = agg_sv[:, order]
+    mean_ord  = mean_abs[order]
+
+    sv_color_df = pd.DataFrame(
+        np.nan_to_num(sv_ord, nan=0.0, posinf=0.0, neginf=0.0).astype(float),
+        columns=names_ord
+    )
+
+    # 蜂群图
+    plt.figure()
+    shap.summary_plot(
+        shap_values=sv_ord,
+        features=sv_color_df,     
+        feature_names=names_ord,
+        max_display=len(names_ord),
+        plot_type="dot",
+        plot_size=(10.5, 6.5),
+        show=False
+    )
+    ax = plt.gca()
+    ax.grid(axis="x", linestyle="--", alpha=0.25)
+    ax.axvline(0, color="#666", lw=0.8, alpha=0.9)
+    for s in ["top", "right"]:
+        ax.spines[s].set_visible(False)
+    plt.title(f"SHAP 蜂群图（{tag}）", pad=10)
+    f1 = os.path.join(SAVE_DIR, f"shap_beeswarm_{tag}.png")
+    plt.tight_layout(); plt.savefig(f1, dpi=300, bbox_inches="tight"); plt.show()
+
+    # 条形图
+    plt.figure(figsize=(10.5, 6.0))
+    y = np.arange(len(names_ord))
+    palette = ["#c9d6df","#bcd4e6","#fff9b1","#ffa69e","#89b0ae",
+               "#b1a7f6","#f9c784","#a0c4ff","#d0e6a5","#f4b5c1"]
+    plt.barh(
+        y, mean_ord, height=0.6, edgecolor="#333", linewidth=0.6,
+        color=(palette * ((len(names_ord)//len(palette))+1))[:len(names_ord)]
+    )
+    plt.yticks(y, names_ord); plt.gca().invert_yaxis()
+    plt.xlabel("Mean(|SHAP value|)")
+    plt.title(f"SHAP 全局重要性（{tag}）", pad=10)
+    for i, v in enumerate(mean_ord):
+        plt.text(v + max(mean_ord)*0.01, i, f"{v:.3f}", va="center", fontsize=11)
+    ax = plt.gca()
+    ax.grid(axis="x", linestyle="--", alpha=0.25)
+    for s in ["top","right","left"]:
+        ax.spines[s].set_visible(False)
+    f2 = os.path.join(SAVE_DIR, f"shap_bar_{tag}.png")
+    plt.tight_layout(); plt.savefig(f2, dpi=300, bbox_inches="tight"); plt.show()
+    print("图已保存：", f1, "和", f2)
+
+
+# 仅原始特征（6 类别 + 2 数值）
+feats_v1, agg_v1 = build_agg(include_cross_num=False, include_cross_categ=False)
+draw_plots(feats_v1, agg_v1, tag="原始8特征")
+
+# 原始特征 + 交互特征（3 数值交互 + 3 类别交互）
+feats_v2, agg_v2 = build_agg(include_cross_num=True, include_cross_categ=True)
+draw_plots(feats_v2, agg_v2, tag="原始+交互特征")
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+import os
+from matplotlib import font_manager as fm
+from matplotlib.lines import Line2D
+
+# 设置中文字体
+font_path = "C:/Windows/Fonts/simhei.ttf"
+my_font = fm.FontProperties(fname=font_path)
+plt.rcParams['font.family'] = my_font.get_name()
+plt.rcParams['axes.unicode_minus'] = False
+sns.set(style="whitegrid")
+
+# 保存路径
+SAVE_DIR = "figures1"
+os.makedirs(SAVE_DIR, exist_ok=True)
+
+# 数值特征列表
+numeric_features = ['Size', 'Zeta Potential']
+
+# 绘图函数
+def plot_feature_vs_de_tumor(df, feature, category_label="", de_col='DE_tumor',
+                             label_col='DE_tumor_binary', threshold=None):
+    threshold = threshold if threshold is not None else df[de_col].quantile(0.75)
+
+    if df.shape[0] < 5:
+        return
+
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(
+        x=feature, y=de_col,
+        hue=label_col, data=df,
+        palette={0: 'blue', 1: 'red'},
+        alpha=0.7, s=60, legend=False
+    )
+
+    plt.axhline(y=threshold, color='green', linestyle='--', linewidth=2)
+
+    high_de_df = df[df[de_col] >= threshold]
+    if not high_de_df.empty:
+        min_val = high_de_df[feature].min()
+        max_val = high_de_df[feature].max()
+
+        plt.axvline(x=min_val, color='purple', linestyle=':', linewidth=1.5)
+        plt.axvline(x=max_val, color='purple', linestyle=':', linewidth=1.5)
+        plt.fill_betweenx([threshold, df[de_col].max()], min_val, max_val, color='purple', alpha=0.1)
+
+        plt.text(
+            x=df[feature].min() + 0.02 * (df[feature].max() - df[feature].min()),
+            y=df[de_col].max() * 0.95,
+            s=f"高DE范围: {min_val:.2f} - {max_val:.2f}",
+            ha='left', fontsize=11, color='purple',
+            fontproperties=my_font,
+            bbox=dict(boxstyle="round,pad=0.3", fc="lavender", ec="purple", lw=1)
+        )
+
+    title = f"{category_label} - {feature} vs {de_col}" if category_label else f"{feature} vs {de_col}"
+    plt.title(title, fontsize=16, fontproperties=my_font)
+    plt.xlabel(feature, fontsize=13, fontproperties=my_font)
+    plt.ylabel(de_col, fontsize=13, fontproperties=my_font)
+
+    custom_lines = [
+        Line2D([0], [0], marker='o', color='w', label='低DE', markerfacecolor='blue', markersize=8),
+        Line2D([0], [0], marker='o', color='w', label='高DE', markerfacecolor='red', markersize=8),
+        Line2D([0], [0], color='green', lw=2, linestyle='--', label=f'阈值 ({threshold:.3f})')
+    ]
+
+    plt.subplots_adjust(right=0.8)
+    plt.legend(
+        handles=custom_lines,
+        title='DE分类',
+        prop=my_font,
+        title_fontproperties=my_font,
+        loc='center left',
+        bbox_to_anchor=(1.02, 0.5),
+        borderaxespad=0.
+    )
+
+    plt.grid(True, linestyle='--', alpha=0.5)
+    plt.tight_layout()
+
+    safe_label = category_label.replace('/', '_').replace('\\', '_')
+    save_path = os.path.join(SAVE_DIR, f"{safe_label}_{feature}_vs_{de_col}.png")
+    plt.savefig(save_path, dpi=300, bbox_inches='tight')
+    plt.show()
+
+# 创建二分类标签
+high_thr = df['DE_tumor'].quantile(0.75)
+if 'DE_tumor_binary' not in df.columns:
+    df['DE_tumor_binary'] = (df['DE_tumor'] >= high_thr).astype(int)
+
+# 批量绘图（可以自己修改特征观察图像）
+category_col = 'MAT'
+for category in df[category_col].dropna().unique():
+    sub_df = df[df[category_col] == category]
+    for feature in numeric_features:
+        label = f"{category_col}_{category}"
+        plot_feature_vs_de_tumor(sub_df, feature, category_label=label, threshold=high_thr)
+
+# 批量绘图（可以自己修改特征观察图像）
+category_col = 'CT'
+for category in df[category_col].dropna().unique():
+    sub_df = df[df[category_col] == category]
+    for feature in numeric_features:
+        label = f"{category_col}_{category}"
+        plot_feature_vs_de_tumor(sub_df, feature, category_label=label, threshold=high_thr)
+
+# ============================================================
+# 强化学习递送智能体（REINFORCE, 单步 bandit）
+# 依赖：df, X_train_raw, preprocessor, best_model_name, model_map, SAVE_DIR
+# ============================================================
+
+import os, re, warnings
+from typing import Optional
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+os.makedirs(SAVE_DIR, exist_ok=True)
+
+warnings.filterwarnings("ignore", message="Found unknown categories in columns")
+
+# ---------------- 0) 从 ColumnTransformer 中取出 OneHotEncoder 的“已学到类别” ----------------
+from sklearn.preprocessing import OneHotEncoder
+
+# 优先用 'cat' 分支；否则自动搜寻 OneHotEncoder
+enc = None
+if hasattr(preprocessor, "named_transformers_") and 'cat' in preprocessor.named_transformers_:
+    enc = preprocessor.named_transformers_['cat']
+else:
+    for name, trans, cols in getattr(preprocessor, "transformers_", []):
+        if isinstance(trans, OneHotEncoder):
+            enc = trans
+            break
+assert enc is not None, "未能从 preprocessor 中找到 OneHotEncoder，请检查 ColumnTransformer。"
+
+# 与训练时一致的类别特征顺序
+cat_feats = ['Type','MAT','TS','CT','TM','Shape']
+
+# 编码器保存的是训练时“见过”的规范类别（可能含 \xa0）
+ENC_SPACE = {feat: list(map(str, cats)) for feat, cats in zip(cat_feats, enc.categories_)}
+CAT_SPACE = {k: ENC_SPACE[k] for k in cat_feats}
+
+def _canonize(feat: str, val) -> Optional[str]:
+    """
+    将任意输入（可能带 \xa0/多空格）映射到编码器已知的“规范类别”。
+    找到等价项就返回编码器里的那一版；否则返回 None。
+    """
+    s = str(val)
+    s_norm = re.sub(r'\s+', ' ', s.replace('\xa0',' ')).strip()
+    # 先试精确匹配
+    if s in ENC_SPACE[feat]:
+        return s
+    # 再试“空白等价”匹配
+    for c in ENC_SPACE[feat]:
+        c_norm = re.sub(r'\s+', ' ', c.replace('\xa0',' ')).strip()
+        if c_norm == s_norm:
+            return c
+    return None
+
+# ---------------- 动作空间（连续离散化） ----------------
+SIZE_MIN, SIZE_MAX, SIZE_STEP = 20, 300, 10        # nm
+ZETA_MIN, ZETA_MAX, ZETA_STEP = -60, 60, 5         # mV
+SIZE_BINS = np.arange(SIZE_MIN, SIZE_MAX + 1e-9, SIZE_STEP).tolist()
+ZETA_BINS = np.arange(ZETA_MIN, ZETA_MAX + 1e-9, ZETA_STEP).tolist()
+
+# ---------------- 策略（因子化 softmax） ----------------
+rng = np.random.default_rng(42)
+
+def softmax(x):
+    x = x - np.max(x)
+    e = np.exp(x)
+    return e / (e.sum() + 1e-12)
+
+# 每维一个可学习 logits
+logits = {'Size': np.zeros(len(SIZE_BINS), dtype=float),
+          'Zeta': np.zeros(len(ZETA_BINS), dtype=float)}
+for col, space in CAT_SPACE.items():
+    logits[col] = np.zeros(len(space), dtype=float)
+
+def sample_action():
+    """从策略中采样一个完整设计；类别直接取编码器里的规范值"""
+    probs_size = softmax(logits['Size'])
+    probs_zeta = softmax(logits['Zeta'])
+    a_size = rng.choice(len(SIZE_BINS), p=probs_size)
+    a_zeta = rng.choice(len(ZETA_BINS), p=probs_zeta)
+
+    cat_choices, logp_sum = {}, np.log(probs_size[a_size] + 1e-12) + np.log(probs_zeta[a_zeta] + 1e-12)
+    for col, space in CAT_SPACE.items():
+        p = softmax(logits[col])
+        idx = rng.choice(len(space), p=p)
+        cat_choices[col] = (idx, p[idx])
+        logp_sum += np.log(p[idx] + 1e-12)
+
+    row = {'Size': SIZE_BINS[a_size], 'Zeta Potential': ZETA_BINS[a_zeta]}
+    for col, space in CAT_SPACE.items():
+        row[col] = space[cat_choices[col][0]]  # 规范类别（与训练完全一致）
+
+    return row, {'a_size': a_size, 'a_zeta': a_zeta,
+                 'cat_idx': {k: v[0] for k, v in cat_choices.items()},
+                 'logp': logp_sum}
+
+# ---------------- 模型打分：predict_prob（映射到规范类别 + 交叉特征） ----------------
+def predict_prob(candidate_row: pd.Series) -> float:
+    row = candidate_row.copy()
+    # 映射回编码器已知类别；失败则给 0 分，杜绝 unknown
+    for c in cat_feats:
+        if c in row:
+            can = _canonize(c, row[c])
+            if can is None:
+                return 0.0
+            row[c] = can
+
+    # 与训练一致的交叉特征
+    row['Size_x_Zeta'] = row['Size'] * row['Zeta Potential']
+    row['Size_x_TS_Passive'] = row['Size'] if str(row['TS']) == 'Passive' else 0
+    row['Zeta_x_Shape_Spherical'] = row['Zeta Potential'] if str(row['Shape']) == 'Spherical' else 0
+    row['TM_CT'] = f"{row['TM']}_{row['CT']}"
+    row['Shape_Type'] = f"{row['Shape']}_{row['Type']}"
+    row['MAT_TS'] = f"{row['MAT']}_{row['TS']}"
+
+    cols_needed = [c for c in df.columns if c not in ['No','DE_tumor','DE_tumor_binary']]
+    for add_col in ['Size_x_Zeta','Size_x_TS_Passive','Zeta_x_Shape_Spherical','TM_CT','Shape_Type','MAT_TS']:
+        if add_col not in cols_needed:
+            cols_needed.append(add_col)
+
+    X_row = preprocessor.transform(pd.DataFrame([{col: row.get(col, np.nan) for col in cols_needed}]))
+    return float(model_map[best_model_name].predict_proba(X_row)[:, 1][0])
+
+# ---------------- 奖励函数（可按项目经验调权重） ----------------
+def reward_fn(candidate_row: pd.Series) -> float:
+    prob = predict_prob(candidate_row)
+    penalty = 0.0
+    # 粒径偏好：80~180 nm
+    if candidate_row['Size'] < 80:
+        penalty += (80 - candidate_row['Size']) / 100.0
+    elif candidate_row['Size'] > 180:
+        penalty += (candidate_row['Size'] - 180) / 120.0
+    # Zeta 绝对值过大惩罚
+    if abs(candidate_row['Zeta Potential']) > 40:
+        penalty += (abs(candidate_row['Zeta Potential']) - 40) / 60.0
+    # 先验偏好（示例）
+    if str(candidate_row['TS']) == 'Active':
+        penalty *= 0.9
+    if str(candidate_row['MAT']) in ['Liposomes','Polymeric']:
+        penalty *= 0.85
+    return prob - penalty
+
+# ---------------- 奖励函数（可按项目经验调权重） ----------------
+def reward_fn(candidate_row: pd.Series) -> float:
+    prob = predict_prob(candidate_row)
+    penalty = 0.0
+    # 粒径偏好：80~180 nm
+    if candidate_row['Size'] < 80:
+        penalty += (80 - candidate_row['Size']) / 100.0
+    elif candidate_row['Size'] > 180:
+        penalty += (candidate_row['Size'] - 180) / 120.0
+    # Zeta 绝对值过大惩罚
+    if abs(candidate_row['Zeta Potential']) > 40:
+        penalty += (abs(candidate_row['Zeta Potential']) - 40) / 60.0
+    # 先验偏好（示例）
+    if str(candidate_row['TS']) == 'Active':
+        penalty *= 0.9
+    if str(candidate_row['MAT']) in ['Liposomes','Polymeric']:
+        penalty *= 0.85
+    return prob - penalty
+
+# ---------------- 运行优化器（含收敛记录） ----------------
+def run_delivery_rl_optimizer(iters=1000, batch_size=24, lr=0.15, topk=12, print_every=100):
+    baseline = 0.0
+    best_pool, seen = [], set()
+    hist_avg, hist_max, hist_best, hist_baseline = [], [], [], []
+    best_so_far = -1e9
+
+    for t in range(1, iters+1):
+        traj, rewards_this_iter = [], []
+        for _ in range(batch_size):
+            row_dict, ainfo = sample_action()
+
+            # 冗余保险：只接收编码器空间内类别
+            if not all(row_dict[c] in CAT_SPACE[c] for c in cat_feats):
+                continue
+
+            key = tuple([row_dict.get(k) for k in ['Size','Zeta Potential','Type','MAT','TS','CT','TM','Shape']])
+            if key in seen:
+                continue
+            seen.add(key)
+
+            cand = pd.Series(row_dict)
+            prob = predict_prob(cand)
+            r = reward_fn(cand)
+            traj.append((ainfo['logp'], r, ainfo))
+            rewards_this_iter.append(r)
+            best_pool.append((r, prob, row_dict))
+
+        if len(traj) == 0:
+            hist_avg.append(np.nan); hist_max.append(np.nan)
+            hist_best.append(best_so_far); hist_baseline.append(baseline)
+            continue
+
+        baseline = reinforce_update(traj, baseline, lr=lr)
+
+        avg_r = float(np.mean(rewards_this_iter))
+        max_r = float(np.max(rewards_this_iter))
+        best_so_far = float(max(best_so_far, max_r))
+
+        hist_avg.append(avg_r); hist_max.append(max_r)
+        hist_best.append(best_so_far); hist_baseline.append(baseline)
+
+        if t % print_every == 0:
+            cur_best = sorted(best_pool, key=lambda x: x[0], reverse=True)[:3]
+            print(f"[Iter {t}] baseline={baseline:.4f} | avg={avg_r:.4f} | max={max_r:.4f} | best_so_far={best_so_far:.4f}")
+            for br, bp, bd in cur_best:
+                print(f"  r={br:.4f}, prob={bp:.4f}, design={bd}")
+
+    # Top-K
+    best_pool_sorted = sorted(best_pool, key=lambda x: x[0], reverse=True)[:topk]
+    rl_df = pd.DataFrame([{**d, 'PredProb': p, 'Reward': r} for r, p, d in best_pool_sorted])
+
+    history = pd.DataFrame({
+        'iter': np.arange(1, iters+1),
+        'avg_reward': hist_avg,
+        'max_reward': hist_max,
+        'best_so_far': hist_best,
+        'baseline': hist_baseline
+    })
+
+    all_eval = pd.DataFrame([{**d, 'PredProb': p, 'Reward': r} for r, p, d in best_pool]).drop_duplicates()
+    return rl_df, history, all_eval
+
+# 放在绘图 cell 之前单独运行
+import os, matplotlib as mpl, matplotlib.font_manager as fm
+
+candidates = [
+    r"C:\Windows\Fonts\simhei.ttf",          # Windows: 黑体
+    r"C:\Windows\Fonts\msyh.ttc",            # Windows: 微软雅黑
+    "/System/Library/Fonts/STHeiti Light.ttc",  # macOS
+    "/System/Library/Fonts/PingFang.ttc",       # macOS (部分版本)
+    "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc",  # Linux
+]
+
+for fp in candidates:
+    if os.path.exists(fp):
+        fm.fontManager.addfont(fp)
+        mpl.rcParams['font.family'] = fm.FontProperties(fname=fp).get_name()
+        mpl.rcParams['axes.unicode_minus'] = False
+        break
+
+# ---------------- 运行 & 导出 ----------------
+rl_results, rl_history, rl_all = run_delivery_rl_optimizer(
+    iters=1000, batch_size=24, lr=0.15, topk=12, print_every=100
+)
+
+print("\n[RL 智能体] Top 设计方案（按奖励排序）")
+display(rl_results)
+rl_csv = os.path.join(SAVE_DIR, "RL_optimal_delivery_designs.csv")
+rl_results.to_csv(rl_csv, index=False)
+print(f"RL优化结果已保存: {rl_csv}")
+
+# ---------------- 8) 收敛曲线 ----------------
+plt.figure(figsize=(8,5))
+plt.plot(rl_history['iter'], rl_history['avg_reward'], label='Avg Reward/iter')
+plt.plot(rl_history['iter'], rl_history['max_reward'], label='Max Reward/iter', alpha=0.85)
+plt.plot(rl_history['iter'], rl_history['best_so_far'], label='Best-so-far', linewidth=2)
+plt.plot(rl_history['iter'], rl_history['baseline'], label='Baseline', linestyle='--')
+plt.xlabel("Iteration"); plt.ylabel("Reward")
+plt.title("RL 优化收敛曲线")
+plt.legend(); plt.grid(alpha=0.3)
+f_conv = os.path.join(SAVE_DIR, "RL_convergence_curve.png")
+plt.tight_layout(); plt.savefig(f_conv, dpi=300, bbox_inches='tight'); plt.show()
+print(f"收敛曲线已保存: {f_conv}")
+
+# ---------------- 9) Size × Zeta 设计分布图 ----------------
+def _cap(v, low, high): return np.minimum(np.maximum(v, low), high)
+
+if not rl_all.empty:
+    plt.figure(figsize=(8,6))
+    s = 40 + 160 * _cap((rl_all['Reward'] - rl_all['Reward'].min()) /
+                        max(1e-12, (rl_all['Reward'].max() - rl_all['Reward'].min())), 0, 1)
+    sc = plt.scatter(rl_all['Size'], rl_all['Zeta Potential'], c=rl_all['PredProb'], s=s, alpha=0.75)
+    cbar = plt.colorbar(sc); cbar.set_label("Predicted Delivery Probability")
+    plt.xlabel("Size (nm)"); plt.ylabel("Zeta Potential (mV)")
+    plt.title("RL 搜索设计分布（颜色=预测概率，大小=奖励）")
+    plt.grid(alpha=0.3)
+    f_dist = os.path.join(SAVE_DIR, "RL_design_distribution.png")
+    plt.tight_layout(); plt.savefig(f_dist, dpi=300, bbox_inches='tight'); plt.show()
+    print(f"设计分布图已保存: {f_dist}")
+
+    # 按材料分面
+    if 'MAT' in rl_all.columns and rl_all['MAT'].nunique() <= 6:
+        g = sns.FacetGrid(rl_all, col='MAT', col_wrap=3, height=3.2, sharex=True, sharey=True)
+        g.map_dataframe(lambda data, color: plt.scatter(
+            data['Size'], data['Zeta Potential'], c=data['PredProb'], s=35, alpha=0.75
+        ))
+        plt.subplots_adjust(top=0.88)
+        plt.suptitle("按材料 MAT 的设计分布（颜色=预测概率）")
+        f_facet = os.path.join(SAVE_DIR, "RL_design_distribution_by_MAT.png")
+        plt.savefig(f_facet, dpi=300, bbox_inches='tight'); plt.show()
+        print(f"分面分布图已保存: {f_facet}")
+else:
+    print("[Info] 无评估点，分布图跳过。")
